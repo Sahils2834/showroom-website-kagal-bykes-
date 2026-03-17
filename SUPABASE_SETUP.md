@@ -166,4 +166,30 @@ CREATE POLICY "Anyone can insert activity" ON public.user_activity FOR INSERT WI
 
 -- Only admins can view activity
 CREATE POLICY "Admins can view activity" ON public.user_activity FOR SELECT USING (auth.role() = 'authenticated');
+
+---
+
+## 10. Migration: Customer Profiles
+Run this script to store and manage customer contact details for the admin panel.
+
+```sql
+-- Create Profiles Table
+CREATE TABLE IF NOT EXISTS public.profiles (
+  id uuid REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
+  email text NOT NULL,
+  full_name text,
+  phone text,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- RLS Policies for Profiles
+ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+
+-- Users can view and update their own profile
+CREATE POLICY "Users can view own profile" ON public.profiles FOR SELECT USING (auth.uid() = id);
+CREATE POLICY "Users can update own profile" ON public.profiles FOR UPDATE USING (auth.uid() = id);
+
+-- Admins can view all profiles
+CREATE POLICY "Admins can view all profiles" ON public.profiles FOR SELECT USING (auth.role() = 'authenticated');
+```
 ```
