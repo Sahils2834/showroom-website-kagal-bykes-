@@ -140,7 +140,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-2xl transition-all active:scale-95 ${scrolled ? "text-white" : "text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"}`}
+            className={`lg:hidden w-12 h-12 flex items-center justify-center rounded-xl border border-hero-red/50 bg-hero-red/10 text-white text-3xl transition-all active:scale-90 shadow-lg shadow-hero-red/20 ${scrolled ? "backdrop-blur-md" : "drop-shadow-2xl"}`}
           >
             {mobileMenuOpen ? "✕" : "☰"}
           </button>

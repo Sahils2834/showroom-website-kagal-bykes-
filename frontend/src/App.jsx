@@ -15,6 +15,7 @@ import Services from "./pages/Services"
 import Finance from "./pages/Finance"
 import Deliveries from "./pages/Deliveries"
 import Login from "./pages/Login"
+import Account from "./pages/Account"
 import AccessoriesPage from "./pages/AccessoriesPage"
 import ExplorePage from "./pages/ExplorePage"
 import ComparePage from "./pages/ComparePage"
@@ -62,6 +63,7 @@ return(
 <Route path="/finance" element={<Finance/>}/>
 <Route path="/deliveries" element={<Deliveries/>}/>
 <Route path="/login" element={<Login/>}/>
+<Route path="/account" element={<Account/>}/>
 <Route path="/admin" element={<Admin/>}/>
 <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
 

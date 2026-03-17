@@ -249,6 +249,7 @@ export default function BikeDetails(){
         </div>
       </div>
 
+      <TestRideModal isOpen={showTestRide} onClose={() => setShowTestRide(false)} preselectedBike={bike.name} />
     </div>
   );
 }

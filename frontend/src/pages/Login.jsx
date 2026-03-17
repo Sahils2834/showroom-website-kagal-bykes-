@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -15,9 +15,9 @@ export default function Login() {
   const { signIn, signUp, user } = useAuth();
   const navigate = useNavigate();
 
-  useState(() => {
+  useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate("/account");
     }
   }, [user, navigate]);
 
