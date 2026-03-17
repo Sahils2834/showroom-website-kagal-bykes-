@@ -62,7 +62,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 md:gap-3 group">
             <img src="/images/Hero_MotoCorp.png" alt="Hero" className="h-6 md:h-8 w-auto transform group-hover:scale-110 transition-transform duration-300" />
-            <h1 className="text-lg md:text-2xl font-display font-black tracking-widest text-white uppercase italic">
+            <h1 className="text-base md:text-2xl font-display font-black tracking-widest text-white uppercase italic">
               Kagal<span className="text-hero-red">Bykes</span>
             </h1>
           </Link>
@@ -140,9 +140,9 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden text-2xl ${scrolled ? "text-white" : "text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"}`}
+            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-2xl transition-all active:scale-95 ${scrolled ? "text-white" : "text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"}`}
           >
-            {mobileMenuOpen ? "X" : "="}
+            {mobileMenuOpen ? "✕" : "☰"}
           </button>
         </div>
       </div>

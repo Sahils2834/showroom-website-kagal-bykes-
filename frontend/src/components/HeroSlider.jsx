@@ -74,7 +74,7 @@ export default function HeroSlider() {
           <SwiperSlide key={i}>
             {({ isActive }) => (
               <div
-                className="w-full h-full bg-hero-dark bg-cover bg-[45%_center] md:bg-center bg-no-repeat relative"
+                className="w-full h-full bg-hero-dark bg-cover bg-[center_center] sm:bg-center bg-no-repeat relative"
                 style={{ backgroundImage: `url(${slide.image})` }}
               >
                 {/* Premium Gradient Overlay */}
@@ -92,13 +92,13 @@ export default function HeroSlider() {
                       transition={{ duration: 0.6, delay: 0.3 }}
                       className="max-w-[85%] sm:max-w-none px-2"
                     >
-                      <h2 className="text-[10px] md:text-lg font-bold tracking-[0.3em] text-hero-red mb-2 md:mb-4 uppercase">
+                      <h2 className="text-[12px] md:text-lg font-bold tracking-[0.3em] text-hero-red mb-2 md:mb-4 uppercase">
                         Introducing
                       </h2>
-                      <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-black leading-none mb-3 md:mb-6 uppercase tracking-tight">
+                      <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-black leading-none mb-3 md:mb-6 uppercase tracking-tight">
                         {slide.title}
                       </h1>
-                      <p className="text-[10px] sm:text-base md:text-2xl font-light text-gray-300 mb-6 md:mb-8 tracking-wide uppercase max-w-sm mx-auto md:mx-0">
+                      <p className="text-xs sm:text-base md:text-2xl font-light text-gray-300 mb-6 md:mb-8 tracking-wide uppercase max-w-sm mx-auto md:mx-0">
                         {slide.desc}
                       </p>
                       
@@ -107,13 +107,13 @@ export default function HeroSlider() {
                         slide.align === 'right' ? 'justify-end items-end sm:items-center' : 'justify-start items-start sm:items-center'
                       }`}>
                         <Link to="/bikes" className="w-full sm:w-auto">
-                          <button className="w-full sm:w-auto bg-hero-red hover:bg-hero-red-light text-white px-6 py-2.5 md:px-8 md:py-3.5 rounded-lg md:rounded font-bold tracking-wider uppercase transition-all duration-300 shadow-lg shadow-hero-red/30 text-[10px] md:text-sm">
+                          <button className="w-full sm:w-auto bg-hero-red hover:bg-hero-red-light text-white px-6 py-3 md:px-8 md:py-3.5 rounded-lg md:rounded font-bold tracking-wider uppercase transition-all duration-300 shadow-lg shadow-hero-red/30 text-xs md:text-sm">
                             EXPLORE
                           </button>
                         </Link>
                         <button
                           onClick={() => setShowTestRide(true)}
-                          className="w-full sm:w-auto border border-white/30 hover:border-white hover:bg-white/10 text-white px-6 py-2.5 md:px-8 md:py-3.5 rounded-lg md:rounded font-bold tracking-wider uppercase transition-all duration-300 text-[10px] md:text-sm"
+                          className="w-full sm:w-auto border border-white/30 hover:border-white hover:bg-white/10 text-white px-6 py-3 md:px-8 md:py-3.5 rounded-lg md:rounded font-bold tracking-wider uppercase transition-all duration-300 text-xs md:text-sm"
                         >
                           TEST RIDE
                         </button>

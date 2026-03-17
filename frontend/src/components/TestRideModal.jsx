@@ -69,7 +69,7 @@ export default function TestRideModal({ isOpen, onClose, preselectedBike }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-hero-gray rounded-2xl border border-white/10 p-8 w-full max-w-lg shadow-2xl overflow-y-auto max-h-[90vh]"
+            className="relative bg-hero-gray rounded-2xl border border-white/10 p-6 sm:p-8 w-full max-w-[90%] sm:max-w-lg shadow-2xl overflow-y-auto max-h-[85vh] m-auto"
           >
             {/* Close */}
             <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-white transition text-xl">✕</button>

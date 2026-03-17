@@ -1,14 +1,20 @@
 import { Link, useLocation } from "react-router-dom";
-import { FaMotorcycle, FaMapMarkerAlt, FaHeadset, FaUser } from "react-icons/fa";
+import { FaMotorcycle, FaMapMarkerAlt, FaHeadset, FaUser, FaUserCircle } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext";
 
 export default function BottomNav() {
   const location = useLocation();
+  const { user } = useAuth();
 
   const navItems = [
     { label: "Bikes", path: "/bikes", icon: <FaMotorcycle /> },
     { label: "Dealers", path: "/", hash: "location", icon: <FaMapMarkerAlt /> },
     { label: "Support", path: "/services", icon: <FaHeadset /> },
-    { label: "Account", path: "/login", icon: <FaUser /> },
+    { 
+      label: user ? "Account" : "Login", 
+      path: "/login", 
+      icon: user ? <FaUserCircle className="text-hero-red" /> : <FaUser /> 
+    },
   ];
 
   return (

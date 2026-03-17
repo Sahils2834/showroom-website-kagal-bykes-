@@ -1,14 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useBikes } from "../context/BikesContext";
 import Bike360Viewer from "../components/Bike360Viewer";
 import AppointmentForm from "../components/AppointmentForm";
+import TestRideModal from "../components/TestRideModal";
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 
 export default function BikeDetails(){
   const { id } = useParams();
+  const navigate = useNavigate();
   const { bikes, loading } = useBikes();
   const [offer, setOffer] = useState(null);
+  const [showTestRide, setShowTestRide] = useState(false);
 
   useEffect(() => {
     supabase.from('site_config').select('exclusive_deal').eq('id', 1).single().then(({ data }) => {
@@ -83,10 +86,16 @@ export default function BikeDetails(){
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="flex-1 bg-hero-red text-white px-6 py-4 rounded-xl font-display font-black tracking-widest uppercase hover:bg-red-700 transition shadow-lg shadow-hero-red/20 active:scale-95">
+                <button 
+                  onClick={() => setShowTestRide(true)}
+                  className="flex-1 bg-hero-red text-white px-6 py-4 rounded-xl font-display font-black tracking-widest uppercase hover:bg-red-700 transition shadow-lg shadow-hero-red/20 active:scale-95"
+                >
                   Book Test Ride
                 </button>
-                <button className="flex-1 bg-white/5 border border-white/10 text-white px-6 py-4 rounded-xl font-display font-black tracking-widest uppercase hover:bg-white/10 transition active:scale-95">
+                <button 
+                  onClick={() => navigate("/finance")}
+                  className="flex-1 bg-white/5 border border-white/10 text-white px-6 py-4 rounded-xl font-display font-black tracking-widest uppercase hover:bg-white/10 transition active:scale-95"
+                >
                   Apply Finance
                 </button>
               </div>
