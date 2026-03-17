@@ -74,12 +74,11 @@ export default function HeroSlider() {
           <SwiperSlide key={i}>
             {({ isActive }) => (
               <div
-                className="w-full h-full bg-hero-dark bg-cover bg-center bg-no-repeat relative"
+                className="w-full h-full bg-hero-dark bg-cover bg-[45%_center] md:bg-center bg-no-repeat relative"
                 style={{ backgroundImage: `url(${slide.image})` }}
               >
                 {/* Premium Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-hero-dark/90 via-hero-dark/50 to-transparent" />
-                <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10 mix-blend-overlay pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-hero-dark/95 via-hero-dark/60 md:via-hero-dark/50 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-hero-dark via-transparent to-transparent" />
 
                 <div className="absolute inset-0 flex items-center max-w-7xl mx-auto px-6">
@@ -91,29 +90,30 @@ export default function HeroSlider() {
                       initial={{ opacity: 0, y: 30 }}
                       animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                       transition={{ duration: 0.6, delay: 0.3 }}
+                      className="max-w-[85%] sm:max-w-none px-2"
                     >
-                      <h2 className="text-sm md:text-lg font-bold tracking-[0.3em] text-hero-red mb-4 uppercase">
+                      <h2 className="text-[10px] md:text-lg font-bold tracking-[0.3em] text-hero-red mb-2 md:mb-4 uppercase">
                         Introducing
                       </h2>
-                      <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-black leading-tight mb-6 uppercase tracking-tight">
+                      <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-black leading-none mb-3 md:mb-6 uppercase tracking-tight">
                         {slide.title}
                       </h1>
-                      <p className="text-base md:text-2xl font-light text-gray-300 mb-8 tracking-wide uppercase">
+                      <p className="text-[10px] sm:text-base md:text-2xl font-light text-gray-300 mb-6 md:mb-8 tracking-wide uppercase max-w-sm mx-auto md:mx-0">
                         {slide.desc}
                       </p>
                       
-                      <div className={`flex flex-col sm:flex-row gap-4 ${
+                      <div className={`flex flex-col sm:flex-row gap-3 md:gap-4 ${
                         slide.align === 'center' ? 'justify-center items-center' : 
                         slide.align === 'right' ? 'justify-end items-end sm:items-center' : 'justify-start items-start sm:items-center'
                       }`}>
                         <Link to="/bikes" className="w-full sm:w-auto">
-                          <button className="w-full sm:w-auto bg-hero-red hover:bg-hero-red-light text-white px-8 py-3.5 rounded font-bold tracking-wider uppercase transition-all duration-300 shadow-lg shadow-hero-red/30 hover:-translate-y-1">
+                          <button className="w-full sm:w-auto bg-hero-red hover:bg-hero-red-light text-white px-6 py-2.5 md:px-8 md:py-3.5 rounded-lg md:rounded font-bold tracking-wider uppercase transition-all duration-300 shadow-lg shadow-hero-red/30 text-[10px] md:text-sm">
                             EXPLORE
                           </button>
                         </Link>
                         <button
                           onClick={() => setShowTestRide(true)}
-                          className="w-full sm:w-auto border border-white/30 hover:border-white hover:bg-white/10 text-white px-8 py-3.5 rounded font-bold tracking-wider uppercase transition-all duration-300"
+                          className="w-full sm:w-auto border border-white/30 hover:border-white hover:bg-white/10 text-white px-6 py-2.5 md:px-8 md:py-3.5 rounded-lg md:rounded font-bold tracking-wider uppercase transition-all duration-300 text-[10px] md:text-sm"
                         >
                           TEST RIDE
                         </button>

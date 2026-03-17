@@ -91,46 +91,40 @@ export default function TestRideModal({ isOpen, onClose, preselectedBike }) {
                   </div>
                 )}
 
-                <div>
-                  <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1">Full Name</label>
-                  <input name="name" value={formData.name} onChange={handleChange} required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-gray-600 focus:outline-none focus:border-hero-red transition" placeholder="Your name" />
+                <div className="floating-label-group">
+                  <input name="name" value={formData.name} onChange={handleChange} required placeholder=" " />
+                  <label>Full Name</label>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1">Email</label>
-                    <input name="email" type="email" value={formData.email} onChange={handleChange} required
-                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-gray-600 focus:outline-none focus:border-hero-red transition" placeholder="Email" />
+                  <div className="floating-label-group">
+                    <input name="email" type="email" value={formData.email} onChange={handleChange} required placeholder=" " />
+                    <label>Email</label>
                   </div>
-                  <div>
-                    <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1">Phone</label>
-                    <input name="phone" type="tel" value={formData.phone} onChange={handleChange} required
-                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-gray-600 focus:outline-none focus:border-hero-red transition" placeholder="Phone" />
+                  <div className="floating-label-group">
+                    <input name="phone" type="tel" value={formData.phone} onChange={handleChange} required placeholder=" " />
+                    <label>Phone Number</label>
                   </div>
                 </div>
 
-                <div>
-                  <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1">Select Bike</label>
-                  <select name="bike_model" value={formData.bike_model} onChange={handleChange} required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-hero-red transition">
-                    <option value="" className="bg-gray-900">Choose a bike</option>
+                <div className="floating-label-group">
+                  <select name="bike_model" value={formData.bike_model} onChange={handleChange} required>
+                    <option value="" className="bg-gray-900"></option>
                     {bikesData.map(bike => (
                       <option key={bike.id} value={bike.name} className="bg-gray-900">{bike.name}</option>
                     ))}
                   </select>
+                  <label>Select Machine</label>
                 </div>
 
-                <div>
-                  <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1">Preferred Date</label>
-                  <input name="preferred_date" type="date" value={formData.preferred_date} onChange={handleChange} required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-hero-red transition" />
+                <div className="floating-label-group">
+                  <input name="preferred_date" type="date" value={formData.preferred_date} onChange={handleChange} required placeholder=" " />
+                  <label>Preferred Date</label>
                 </div>
 
-                <div>
-                  <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1">Message (Optional)</label>
-                  <textarea name="message" value={formData.message} onChange={handleChange} rows={2}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-gray-600 focus:outline-none focus:border-hero-red transition resize-none" placeholder="Any preferences..." />
+                <div className="floating-label-group">
+                  <textarea name="message" value={formData.message} onChange={handleChange} rows={2} placeholder=" " />
+                  <label>Any special requests?</label>
                 </div>
 
                 <button type="submit" disabled={loading}

@@ -22,18 +22,17 @@ export default function OffersSection() {
   return (
     <section className="relative overflow-hidden bg-hero-dark text-white rounded-[2rem] shadow-2xl border border-white/5 group my-20">
       <div className="absolute inset-0 bg-gradient-to-r from-hero-red/10 via-transparent to-transparent opacity-50"></div>
-      <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-5 mix-blend-overlay pointer-events-none transition-transform duration-1000 group-hover:scale-110"></div>
       
-      <div className="relative z-10 py-12 px-6 md:py-16 md:px-12 flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto">
-        <div className="text-center md:text-left mb-10 md:mb-0">
-          <div className="flex items-center gap-3 mb-4 justify-center md:justify-start">
-            <span className="w-10 h-[1px] bg-hero-red"></span>
-            <p className="uppercase tracking-[0.4em] font-black text-[10px] text-hero-red">Limited Offer</p>
+      <div className="relative z-10 py-10 px-6 md:py-16 md:px-12 flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto text-center md:text-left">
+        <div className="mb-8 md:mb-0">
+          <div className="flex items-center gap-3 mb-2 md:mb-4 justify-center md:justify-start">
+            <span className="w-8 h-[1px] bg-hero-red"></span>
+            <p className="uppercase tracking-[0.4em] font-black text-[9px] md:text-[10px] text-hero-red">Limited Offer</p>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tighter italic mb-4">
+          <h2 className="text-3xl md:text-6xl font-display font-black uppercase tracking-tighter italic mb-3 md:mb-4">
             {offer.title.split(' ')[0]} <span className="text-hero-red">{offer.title.split(' ').slice(1).join(' ')}</span>
           </h2>
-          <p className="text-base md:text-lg font-light text-gray-400 max-w-lg leading-relaxed">
+          <p className="text-sm md:text-lg font-light text-gray-400 max-w-lg leading-relaxed px-4 md:px-0">
             {offer.subtitle.replace(`₹${offer.discount}`, `₹${offer.discount.toLocaleString()}`)}
           </p>
         </div>

@@ -11,137 +11,69 @@ export default function BikeCard({ bike }) {
     <motion.div
       layout
       whileHover={!expanded ? { y: -10 } : {}}
-      className="bg-hero-gray rounded-xl shadow-2xl overflow-hidden border border-white/5 relative group"
+      className="bg-hero-gray/40 backdrop-blur-md lg:bg-hero-gray rounded-3xl lg:rounded-xl shadow-2xl overflow-hidden border border-white/10 relative group h-full flex flex-col"
     >
-      <div className="overflow-hidden relative bg-white">
-        <img
-          src={bike.image}
-          className={`w-full object-contain p-4 transform transition-transform duration-700 ease-in-out ${
-            expanded ? "h-72" : "h-64 group-hover:scale-110"
-          }`}
-          alt={bike.name}
-        />
-        <div className="absolute top-4 right-4 bg-hero-red text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+      <div className="overflow-hidden relative bg-transparent aspect-video md:aspect-auto">
+        <Link to={`/bike/${bike.id}`} className="block">
+          <img
+            src={bike.image}
+            className={`w-full object-contain p-4 md:p-4 transform transition-transform duration-700 ease-in-out ${
+              expanded ? "h-36 md:h-72" : "h-36 md:h-64 group-hover:scale-110"
+            }`}
+            alt={bike.name}
+          />
+        </Link>
+        <div className="absolute top-6 left-6 bg-hero-red text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg shadow-hero-red/30">
           {bike.category}
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-hero-dark via-transparent to-transparent opacity-80" />
       </div>
 
-      <div className="p-6 relative z-10 -mt-10">
-        <h2 className="text-2xl font-display font-black uppercase text-white mb-2 tracking-tight group-hover:text-hero-red transition-colors">
-          {bike.name}
-        </h2>
+      <div className="p-4 md:p-6 flex-1 flex flex-col">
+        <Link to={`/bike/${bike.id}`}>
+          <h2 className="text-lg md:text-2xl font-display font-black uppercase text-white mb-2 md:mb-2 tracking-tighter leading-none group-hover:text-hero-red transition-colors">
+            {bike.name}
+          </h2>
+        </Link>
 
-        <div className="flex gap-4 mb-4">
-          <div className="text-xs uppercase tracking-widest text-gray-400 font-bold border-l-2 border-hero-red pl-2">
-            <span className="block text-[10px] text-gray-500 mb-1">Engine</span>
-            {bike.engine}
-          </div>
-          <div className="text-xs uppercase tracking-widest text-gray-400 font-bold border-l-2 border-hero-red pl-2">
-            <span className="block text-[10px] text-gray-500 mb-1">Power</span>
-            {bike.topSpeed || "Awesome"}
-          </div>
+        {/* Specs List - Bullet Style for Mobile */}
+        <div className="mb-4 md:mb-4 space-y-1.5">
+          {bike.features.slice(0, 3).map((feature, i) => (
+            <div key={i} className="flex items-center gap-2 text-gray-600 lg:text-gray-400">
+              <span className="w-1 h-1 bg-hero-red rounded-full flex-shrink-0" />
+              <span className="text-[9px] md:text-xs font-bold md:font-semibold uppercase tracking-wide md:tracking-widest">{feature}</span>
+            </div>
+          ))}
         </div>
 
-        {/* Expandable Details Section */}
-        <AnimatePresence>
-          {expanded && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="overflow-hidden"
-            >
-              {/* Description */}
-              <p className="text-gray-400 text-sm mb-5 leading-relaxed">
-                {bike.description}
-              </p>
-
-              {/* Specs Grid */}
-              <div className="grid grid-cols-2 gap-3 mb-5">
-                <div className="bg-white/5 rounded-lg p-3">
-                  <span className="text-[10px] text-gray-500 uppercase tracking-wider block mb-1">Mileage</span>
-                  <span className="text-white font-bold text-sm">{bike.mileage}</span>
-                </div>
-                <div className="bg-white/5 rounded-lg p-3">
-                  <span className="text-[10px] text-gray-500 uppercase tracking-wider block mb-1">Top Speed</span>
-                  <span className="text-white font-bold text-sm">{bike.topSpeed}</span>
-                </div>
-                <div className="bg-white/5 rounded-lg p-3">
-                  <span className="text-[10px] text-gray-500 uppercase tracking-wider block mb-1">Ex-Showroom</span>
-                  <span className="text-hero-red font-bold text-sm">{bike.price.toLocaleString()}</span>
-                </div>
-                <div className="bg-white/5 rounded-lg p-3">
-                  <span className="text-[10px] text-gray-500 uppercase tracking-wider block mb-1">On-Road</span>
-                  <span className="text-green-400 font-bold text-sm">{bike.onRoad.toLocaleString()}</span>
-                </div>
-              </div>
-
-              {/* Colors */}
-              <div className="mb-5">
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider block mb-2">Available Colors</span>
-                <div className="flex flex-wrap gap-2">
-                  {bike.color.map((c, i) => (
-                    <span key={i} className="text-xs bg-white/10 text-gray-300 px-3 py-1 rounded-full">{c}</span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Features */}
-              <div className="mb-5">
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider block mb-2">Key Features</span>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {bike.features.map((f, i) => (
-                    <span key={i} className="text-xs text-gray-400 flex items-center gap-1.5">
-                      <span className="w-1 h-1 bg-hero-red rounded-full flex-shrink-0" />
-                      {f}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Discount */}
-              {bike.discount > 0 && (
-                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3 mb-5">
-                  <span className="text-green-400 font-bold text-sm">Save {bike.discount.toLocaleString()} — {bike.offer_title || "Festival Offer"}</span>
-                </div>
-              )}
-
-              {/* CTA Buttons */}
-              <div className="flex gap-3">
-                <Link to={`/bike/${bike.id}`} className="flex-1">
-                  <button className="w-full bg-hero-red text-white py-2.5 rounded text-sm font-bold uppercase tracking-wider hover:bg-red-700 transition-all">
-                    Full Details
-                  </button>
-                </Link>
-                <button onClick={() => setShowTestRide(true)} className="flex-1 border border-white/20 text-white py-2.5 rounded text-sm font-bold uppercase tracking-wider hover:bg-white/10 transition-all">
-                  Book Test Ride
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Price & Toggle Row */}
-        <div className={`flex justify-between items-center border-t border-white/10 pt-4 ${expanded ? "mt-0" : "mt-2"}`}>
+        {/* Pricing Section - High Visibility for Mobile */}
+        <div className="mt-auto flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-0 pt-8 md:pt-4 border-t border-gray-100 lg:border-white/10">
           <div>
-            <span className="text-xs text-gray-500 uppercase tracking-widest block mb-1">Starting at</span>
-            <p className="text-hero-red font-display font-bold text-xl">
-              {bike.price.toLocaleString()}
-            </p>
+            <span className="text-[8px] md:text-xs text-gray-500 uppercase tracking-[0.3em] font-black block mb-0.5">Starting Price</span>
+            <div className="flex items-baseline gap-2">
+               <p className="text-white font-display font-black text-2xl md:text-xl italic">
+                ₹{bike.price.toLocaleString()}
+              </p>
+              {bike.discount > 0 && (
+                <span className="text-hero-red text-[10px] font-black line-through opacity-50 italic">
+                  ₹{(bike.price + bike.discount).toLocaleString()}
+                </span>
+              )}
+            </div>
           </div>
 
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className={`px-5 py-2.5 rounded text-sm font-bold uppercase tracking-wider transition-all duration-300 ${
-              expanded
-                ? "bg-white/20 text-white hover:bg-white/30"
-                : "bg-white/10 text-white hover:bg-hero-red hover:text-white"
-            }`}
-          >
-            {expanded ? "Close" : "Details"}
-          </button>
+          <div className="flex flex-row md:flex-row gap-2 w-full md:w-auto mt-4 md:mt-0">
+            <button
+               onClick={() => setShowTestRide(true)}
+               className="flex-1 md:flex-none bg-hero-red text-white px-3 md:px-8 py-2.5 md:py-2.5 rounded-lg md:rounded-lg text-[9px] md:text-sm font-black uppercase tracking-widest shadow-2xl shadow-hero-red/30 hover:bg-red-700 transition-all active:scale-[0.98]"
+            >
+              Test Ride
+            </button>
+            <Link to={`/bike/${bike.id}`} className="flex-1 md:block">
+               <button className="w-full border border-white/10 lg:border-white/20 text-white px-3 py-2.5 md:px-5 md:py-2.5 rounded-lg text-[9px] md:text-xs font-black uppercase tracking-widest hover:bg-white/10 transition-all">
+                View
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
       <TestRideModal isOpen={showTestRide} onClose={() => setShowTestRide(false)} preselectedBike={bike.name} />

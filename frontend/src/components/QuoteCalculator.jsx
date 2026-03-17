@@ -53,13 +53,13 @@ export default function QuoteCalculator() {
   const totalInterest = totalAmount - loanAmount;
 
   return (
-    <div className="bg-hero-dark rounded-xl shadow-2xl p-8 md:p-12 border border-white/5 relative z-10 w-full">
-      <div className="mb-10 text-center md:text-left">
-        <h3 className="text-hero-red uppercase tracking-[0.2em] font-bold text-sm mb-2">Finance Your Ride</h3>
-        <h2 className="text-3xl md:text-4xl font-display font-black text-white uppercase tracking-tight">
+    <div className="bg-hero-dark rounded-xl shadow-2xl p-5 md:p-12 border border-white/5 relative z-10 w-full overflow-hidden">
+      <div className="mb-6 md:mb-10 text-center md:text-left">
+        <h3 className="text-hero-red uppercase tracking-[0.2em] font-bold text-[10px] md:text-sm mb-1 md:mb-2">Finance Your Ride</h3>
+        <h2 className="text-2xl md:text-4xl font-display font-black text-white uppercase tracking-tight line-clamp-1">
           Instant Quotation
         </h2>
-        <p className="text-gray-400 mt-2 font-light">Calculate the approximate cost of your selected machine</p>
+        <p className="text-gray-400 mt-1 md:mt-2 font-light text-xs md:text-base">Calculate the cost of your machine</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -165,17 +165,17 @@ export default function QuoteCalculator() {
         </div>
 
         {/* Results Section */}
-        <div className="bg-black/80 backdrop-blur-sm border border-white/10 text-white p-8 md:p-10 rounded-xl flex flex-col justify-center">
-          <h3 className="text-xl font-display font-bold uppercase tracking-widest text-gray-300 border-b border-white/10 pb-4 mb-8">
+        <div className="bg-black/40 backdrop-blur-sm border border-white/10 text-white p-6 md:p-10 rounded-xl flex flex-col justify-center">
+          <h3 className="text-sm md:text-xl font-display font-bold uppercase tracking-widest text-gray-300 border-b border-white/10 pb-3 md:pb-4 mb-6 md:mb-8">
             Quotation Summary
           </h3>
 
           {emi ? (
-            <div className="space-y-6">
-              <div className="bg-hero-gray/50 p-6 rounded border-l-4 border-hero-red relative overflow-hidden">
-                <div className="absolute right-0 top-0 opacity-5 text-6xl">₹</div>
-                <p className="text-gray-400 text-xs uppercase tracking-widest mb-2 font-bold">Monthly EMI</p>
-                <p className="text-5xl font-display font-black text-white">
+            <div className="space-y-4 md:space-y-6">
+              <div className="bg-hero-gray/50 p-5 md:p-6 rounded border-l-4 border-hero-red relative overflow-hidden">
+                <div className="absolute right-0 top-0 opacity-5 text-4xl md:text-6xl text-white">₹</div>
+                <p className="text-gray-400 text-[10px] uppercase tracking-widest mb-1 md:mb-2 font-bold">Monthly EMI</p>
+                <p className="text-3xl md:text-5xl font-display font-black text-white">
                   ₹{Math.round(emi).toLocaleString()}
                 </p>
               </div>

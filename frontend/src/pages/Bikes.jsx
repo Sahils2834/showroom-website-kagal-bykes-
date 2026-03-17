@@ -41,10 +41,28 @@ export default function Bikes(){
 
       {/* Filters & Bikes Container */}
       <div className="max-w-7xl mx-auto px-6 pb-20">
+        
+        {/* Mobile Horizontal Category Tabs */}
+        <div className="lg:hidden mb-8 -mx-6 px-6 overflow-x-auto whitespace-nowrap scrollbar-hide flex gap-4 no-scrollbar">
+          {categories.map(category => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-3 rounded-full transition-all duration-300 font-display font-black text-xs uppercase tracking-widest border ${
+                selectedCategory === category
+                  ? "bg-hero-red border-hero-red text-white"
+                  : "bg-hero-gray/20 border-white/5 text-gray-400"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
         <div className="flex flex-col lg:flex-row gap-12">
           
-          {/* Sidebar Filters */}
-          <div className="w-full lg:w-72 flex-shrink-0">
+          {/* Sidebar Filters - Desktop Only */}
+          <div className="hidden lg:block w-72 flex-shrink-0">
             <div className="bg-hero-gray/30 backdrop-blur-sm rounded-3xl border border-white/5 p-8 sticky top-32">
               
               {/* Category Filter */}
@@ -102,12 +120,13 @@ export default function Bikes(){
             </div>
           </div>
 
-          {/* Bikes Grid */}
+          {/* Bikes Section */}
           <div className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Horizontal Scroll for Mobile, Grid for Desktop */}
+            <div className="flex lg:grid lg:grid-cols-2 gap-6 lg:gap-8 overflow-x-auto lg:overflow-visible scrollbar-hide snap-x -mx-6 px-6 lg:mx-0 lg:px-0 no-scrollbar">
               {filteredBikes.length > 0 ? (
                 filteredBikes.map((bike) => (
-                  <div key={bike.id} className="relative group/card">
+                  <div key={bike.id} className="relative group/card flex-shrink-0 w-[78%] sm:w-[70%] lg:w-auto snap-center">
                     <BikeCard bike={bike} />
                     {/* Compare Checkbox */}
                     <button
@@ -123,7 +142,7 @@ export default function Bikes(){
                   </div>
                 ))
               ) : (
-                <div className="col-span-full py-24 text-center bg-hero-gray/20 rounded-[3rem] border border-white/5">
+                <div className="col-span-full py-24 text-center bg-hero-gray/20 rounded-[3rem] border border-white/5 w-full">
                   <p className="text-3xl font-display font-black text-white uppercase italic tracking-tighter mb-4">No Machines Match</p>
                   <p className="text-gray-500 font-light">Try adjusting your filters or category choice.</p>
                 </div>

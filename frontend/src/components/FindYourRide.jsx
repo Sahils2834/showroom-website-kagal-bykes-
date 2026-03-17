@@ -67,11 +67,11 @@ export default function FindYourRide() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
         {/* Header */}
-        <div className="mb-12">
-          <h3 className="text-hero-red uppercase tracking-[0.3em] font-bold text-sm mb-3">
+        <div className="mb-8 md:mb-12">
+          <h3 className="text-hero-red uppercase tracking-[0.3em] font-bold text-[10px] md:text-sm mb-2 md:mb-3">
             Discover
           </h3>
-          <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tight text-white">
+          <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-white line-clamp-2">
             Find Your Ride
           </h2>
         </div>
@@ -98,27 +98,27 @@ export default function FindYourRide() {
 
             {/* Engine Slider */}
             <div>
-              <label className="text-white font-bold text-lg mb-4 block">Engine</label>
-              <div className="relative">
+              <label className="text-white font-bold text-base md:text-lg mb-3 md:mb-4 block italic">Engine</label>
+              <div className="relative px-1">
                 <input
                   type="range"
                   min={97}
                   max={445}
                   value={engineMax}
                   onChange={(e) => setEngineMax(Number(e.target.value))}
-                  className="w-full accent-hero-red h-1 bg-white/20 rounded-full appearance-none cursor-pointer"
+                  className="w-full accent-hero-red h-1 bg-white/10 rounded-full appearance-none cursor-pointer"
                 />
               </div>
-              <div className="flex justify-between mt-3">
+              <div className="flex justify-between mt-3 px-1">
                 <div>
-                  <span className="text-gray-500 text-xs block">Min</span>
-                  <span className="text-white font-bold text-2xl">97</span>
-                  <span className="text-gray-400 text-xs ml-1">cc</span>
+                  <span className="text-gray-500 text-[10px] block uppercase tracking-tighter">Min</span>
+                  <span className="text-white font-black text-xl md:text-2xl">97</span>
+                  <span className="text-gray-400 text-[10px] ml-1">cc</span>
                 </div>
                 <div className="text-right">
-                  <span className="text-gray-500 text-xs block">Max</span>
-                  <span className="text-white font-bold text-2xl">{engineMax}</span>
-                  <span className="text-gray-400 text-xs ml-1">cc</span>
+                  <span className="text-gray-500 text-[10px] block uppercase tracking-tighter">Max</span>
+                  <span className="text-white font-black text-xl md:text-2xl">{engineMax}</span>
+                  <span className="text-gray-400 text-[10px] ml-1">cc</span>
                 </div>
               </div>
             </div>

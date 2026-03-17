@@ -9,6 +9,10 @@
     width: 100%;
     margin: 0;
     padding: 0;
+    /* Sophisticated scaling for mobile */
+    @media (max-width: 639px) {
+      font-size: 14px;
+    }
   }
 
   body {
@@ -18,6 +22,14 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
+    @apply tracking-tighter;
+  }
+
+  /* Reduce header sizes slightly on mobile for sophistication */
+  @media (max-width: 480px) {
+    h1 { font-size: 2.5rem !important; }
+    h2 { font-size: 2rem !important; }
+    h3 { font-size: 1.5rem !important; }
   }
 
   #root {
@@ -81,4 +93,40 @@
   background: #e71922 !important;
   width: 24px !important;
   border-radius: 4px !important;
+}
+
+/* Utilities */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Floating Label Sophistication */
+.floating-label-group {
+  position: relative;
+  @apply mb-4;
+}
+
+.floating-label-group input,
+.floating-label-group select,
+.floating-label-group textarea {
+  @apply bg-hero-dark/50 border border-white/5 rounded-xl px-4 pt-6 pb-2 w-full text-white focus:border-hero-red/50 outline-none transition-all duration-300;
+}
+
+.floating-label-group label {
+  @apply absolute left-4 top-4 text-gray-500 text-[10px] uppercase tracking-widest font-black pointer-events-none transition-all duration-300;
+}
+
+.floating-label-group input:focus + label,
+.floating-label-group input:not(:placeholder-shown) + label,
+.floating-label-group select:focus + label,
+.floating-label-group select:not([value=""]) + label,
+.floating-label-group textarea:focus + label,
+.floating-label-group textarea:not(:placeholder-shown) + label {
+  @apply top-2 text-[8px] text-hero-red;
 }

@@ -5,6 +5,8 @@ import { BikesProvider } from "./context/BikesContext"
 import Navbar from "./components/Navbar"
 import Sidebar from "./components/Sidebar"
 import Footer from "./components/Footer"
+import ScrollToTop from "./components/ScrollToTop"
+import BottomNav from "./components/BottomNav"
 
 import Home from "./pages/Home"
 import Bikes from "./pages/Bikes"
@@ -43,8 +45,10 @@ return(
 <BikesProvider>
 <div className="bg-hero-dark text-white min-h-screen font-sans selection:bg-hero-red selection:text-white">
 
+<ScrollToTop />
 <Navbar/>
 <Sidebar/>
+<BottomNav/>
 
 <Routes>
 
