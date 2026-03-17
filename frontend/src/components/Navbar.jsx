@@ -37,6 +37,7 @@ export default function Navbar() {
     { label: "Explore", path: "/explore" },
     { label: "Services", path: "/services" },
     { label: "Finance", path: "/finance" },
+    { label: "Privacy", path: "/privacy-policy" },
   ];
 
   return (
@@ -51,7 +52,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <FaMotorcycle className="text-hero-red text-3xl transform group-hover:-rotate-12 transition-transform duration-300" />
+            <img src="/images/Hero_MotoCorp.png" alt="Hero" className="h-8 w-auto transform group-hover:scale-110 transition-transform duration-300" />
             <h1 className="text-2xl font-display font-black tracking-widest text-white uppercase italic">
               Kagal<span className="text-hero-red">Bykes</span>
             </h1>

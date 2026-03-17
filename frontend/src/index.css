@@ -43,3 +43,41 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #ff1e27;
 }
+
+/* Hero Slider Navigation Arrows */
+.hero-swiper .swiper-button-next,
+.hero-swiper .swiper-button-prev {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.hero-swiper .swiper-button-next:after,
+.hero-swiper .swiper-button-prev:after {
+  font-size: 20px !important;
+  font-weight: bold;
+}
+
+.hero-swiper .swiper-button-next:hover,
+.hero-swiper .swiper-button-prev:hover {
+  background: #e71922;
+  border-color: #e71922;
+  transform: scale(1.1);
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  background: #e71922 !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+}

@@ -51,11 +51,24 @@ export default function HeroSlider() {
         effect="fade"
         fadeEffect={{ crossFade: true }}
         slidesPerView={1}
-        loop={true}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
-        navigation={true}
-        className="w-full h-full"
+        loop={slides.length > 1}
+        speed={1000}
+        autoplay={{ 
+          delay: 5000, 
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        }}
+        pagination={{ 
+          clickable: true,
+          dynamicBullets: true 
+        }}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
+        watchOverflow={false}
+        className="w-full h-full hero-swiper"
+        key={slides.length}
       >
         {slides.map((slide, i) => (
           <SwiperSlide key={i}>
@@ -112,6 +125,9 @@ export default function HeroSlider() {
             )}
           </SwiperSlide>
         ))}
+        {/* Navigation Arrows */}
+        <div className="swiper-button-prev !z-20"></div>
+        <div className="swiper-button-next !z-20"></div>
       </Swiper>
       
       {/* Scroll Down Indicator */}

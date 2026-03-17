@@ -14,7 +14,7 @@ export default function Footer() {
             {/* Brand */}
             <div>
               <Link to="/" className="flex items-center gap-3 group mb-6">
-                <FaMotorcycle className="text-hero-red text-3xl transform group-hover:-rotate-12 transition-transform duration-300" />
+                <img src="/images/Hero_MotoCorp.png" alt="Hero" className="h-8 w-auto transform group-hover:scale-110 transition-transform duration-300" />
                 <h1 className="text-2xl font-display font-black tracking-widest text-white uppercase italic">
                   Kagal<span className="text-hero-red">Bykes</span>
                 </h1>
@@ -100,7 +100,7 @@ export default function Footer() {
             <p>&copy; {new Date().getFullYear()} Kagal Bykes. All Rights Reserved.</p>
             
             <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-white transition">Privacy Policy</a>
+              <Link to="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link>
               <a href="#" className="hover:text-white transition">Terms &amp; Conditions</a>
               <a href="#" className="hover:text-white transition">Disclaimer</a>
             </div>

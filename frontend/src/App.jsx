@@ -17,6 +17,7 @@ import AccessoriesPage from "./pages/AccessoriesPage"
 import ExplorePage from "./pages/ExplorePage"
 import ComparePage from "./pages/ComparePage"
 import Admin from "./pages/Admin"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
 
 import { useEffect } from "react";
 import { supabase } from "./lib/supabase";
@@ -58,6 +59,7 @@ return(
 <Route path="/deliveries" element={<Deliveries/>}/>
 <Route path="/login" element={<Login/>}/>
 <Route path="/admin" element={<Admin/>}/>
+<Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
 
 </Routes>
 

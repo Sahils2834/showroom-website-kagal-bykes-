@@ -7,7 +7,8 @@ const connectDB = require('./config/db');
 dotenv.config();
 
 // Connect to MongoDB
-connectDB();
+// MongoDB connection removed (migrating to Supabase)
+// connectDB();
 
 const app = express();
 
@@ -20,11 +21,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ─── Routes ─────────────────────────────────────────────────────────
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/appointments', require('./routes/appointments'));
-app.use('/api/bikes', require('./routes/bikes'));
-app.use('/api/reviews', require('./routes/reviews'));
-app.use('/api/testrides', require('./routes/testrides'));
+// Routes (Migrating to Supabase - these are now handled by Supabase directly from frontend)
+app.get('/api/status', (req, res) => res.json({ message: "Backend is running. Data operations migrate to Supabase." }));
 
 // ─── Health Check ───────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
@@ -48,5 +46,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📡 API available at http://localhost:${PORT}/api`);
+  console.log(`📡 API available at http://localhost:${PORT}/api (Migrating to Supabase)`);
 });
