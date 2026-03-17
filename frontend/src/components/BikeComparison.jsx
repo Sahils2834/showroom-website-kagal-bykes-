@@ -50,13 +50,13 @@ export default function BikeComparison() {
         </div>
 
         {/* Comparison Table */}
-        <div className="overflow-x-auto -mx-8 md:mx-0">
-          <table className="w-full text-sm min-w-[500px]">
+        <div className="overflow-x-auto -mx-4 md:mx-0">
+          <table className="w-full text-xs md:text-sm min-w-[320px] md:min-w-[500px]">
             <thead className="bg-hero-dark/50">
               <tr>
-                <th className="text-left py-6 px-6 font-display font-black uppercase tracking-widest text-gray-400 border-b border-white/5">Spec</th>
+                <th className="text-left py-4 md:py-6 px-3 md:px-6 font-display font-black uppercase tracking-widest text-gray-400 border-b border-white/5 text-[9px] md:text-sm">Spec</th>
                 {selectedBikes.map((bike) => (
-                  <th key={bike.id} className="py-6 px-6 font-display font-black uppercase tracking-widest text-hero-red border-b border-white/5 text-center">
+                  <th key={bike.id} className="py-4 md:py-6 px-3 md:px-6 font-display font-black uppercase tracking-widest text-hero-red border-b border-white/5 text-center text-[9px] md:text-sm">
                     {bike.name}
                   </th>
                 ))}
@@ -71,9 +71,9 @@ export default function BikeComparison() {
                 { label: 'Segment', key: 'category' }
               ].map((spec) => (
                 <tr key={spec.key} className="hover:bg-white/[0.02] transition-colors">
-                  <td className="py-5 px-6 font-bold text-gray-400 uppercase tracking-wider text-[11px]">{spec.label}</td>
+                  <td className="py-3 md:py-5 px-3 md:px-6 font-bold text-gray-400 uppercase tracking-tighter md:tracking-wider text-[8px] md:text-[11px] leading-tight">{spec.label}</td>
                   {selectedBikes.map((bike) => (
-                    <td key={bike.id} className="py-5 px-6 text-center font-display font-black text-white italic text-lg">
+                    <td key={bike.id} className="py-3 md:py-5 px-3 md:px-6 text-center font-display font-black text-white italic text-xs md:text-lg">
                       {spec.key === 'price' ? `₹${bike.price.toLocaleString()}` : bike[spec.key]}
                     </td>
                   ))}

@@ -60,9 +60,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <img src="/images/Hero_MotoCorp.png" alt="Hero" className="h-8 w-auto transform group-hover:scale-110 transition-transform duration-300" />
-            <h1 className="text-2xl font-display font-black tracking-widest text-white uppercase italic">
+          <Link to="/" className="flex items-center gap-2 md:gap-3 group">
+            <img src="/images/Hero_MotoCorp.png" alt="Hero" className="h-6 md:h-8 w-auto transform group-hover:scale-110 transition-transform duration-300" />
+            <h1 className="text-lg md:text-2xl font-display font-black tracking-widest text-white uppercase italic">
               Kagal<span className="text-hero-red">Bykes</span>
             </h1>
           </Link>

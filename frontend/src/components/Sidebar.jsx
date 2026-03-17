@@ -43,7 +43,7 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`fixed right-4 md:right-8 bottom-6 md:bottom-12 z-40 transition-all duration-700 ${
+      className={`fixed right-4 md:right-8 bottom-24 md:bottom-12 z-40 transition-all duration-700 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20 pointer-events-none"
       }`}
     >

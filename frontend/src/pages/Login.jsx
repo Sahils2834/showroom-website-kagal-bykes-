@@ -8,6 +8,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,7 +23,8 @@ export default function Login() {
 
     try {
       if (isSignUp) {
-        const { error } = await signUp(email, password, fullName);
+        if (!phone) throw new Error("Phone number is required");
+        const { error } = await signUp(email, password, fullName, phone);
         if (error) throw error;
         setSuccess("Account created! Check your email for verification link.");
       } else {
@@ -73,17 +75,30 @@ export default function Login() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {isSignUp && (
-              <div>
-                <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1.5">Full Name</label>
-                <input
-                  type="text"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-hero-red transition"
-                  placeholder="Your full name"
-                  required
-                />
-              </div>
+              <>
+                <div>
+                  <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1.5">Full Name</label>
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-hero-red transition"
+                    placeholder="Your full name"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1.5">Phone Number</label>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-hero-red transition"
+                    placeholder="+91 00000 00000"
+                    required
+                  />
+                </div>
+              </>
             )}
 
             <div>

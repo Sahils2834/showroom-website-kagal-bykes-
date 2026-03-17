@@ -30,12 +30,34 @@ export function AuthProvider({ children }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email, password, fullName) => {
+  const signUp = async (email, password, fullName, phone) => {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { full_name: fullName } }
+      options: { 
+        data: { 
+          full_name: fullName,
+          phone: phone 
+        } 
+      }
     });
+
+    if (!error && data?.user) {
+      await supabase.from('profiles').insert([
+        {
+          id: data.user.id,
+          email: email,
+          full_name: fullName,
+          phone: phone
+        }
+      ]);
+
+      await supabase.from('user_activity').insert({
+        activity_type: 'signup',
+        user_email: email,
+        details: `New customer registered: ${fullName} (${phone})`
+      });
+    }
     return { data, error };
   };
 

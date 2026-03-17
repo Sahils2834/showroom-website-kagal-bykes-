@@ -13,6 +13,7 @@ export default function Admin() {
   const [config, setConfig] = useState(null);
   const [appointments, setAppointments] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Form States
@@ -58,6 +59,11 @@ export default function Admin() {
       const { data: actData, error: actError } = await supabase.from('user_activity').select('*').order('created_at', { ascending: false }).limit(50);
       if (actError) throw actError;
       setActivities(actData || []);
+      
+      // Fetch Profiles
+      const { data: profData, error: profError } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
+      if (profError) throw profError;
+      setProfiles(profData || []);
 
       setConfig(configData);
       if (configData?.exclusive_deal) {
@@ -230,7 +236,7 @@ export default function Admin() {
       {/* Tabs */}
       <div className="max-w-7xl mx-auto px-4 mb-8">
         <div className="bg-white rounded-xl shadow-lg p-2 flex flex-wrap gap-2">
-          {['bikes', 'offers', 'analytics'].map(tab => (
+          {['bikes', 'offers', 'analytics', 'customers'].map(tab => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -533,6 +539,58 @@ export default function Admin() {
                  </table>
                </div>
              )}
+          </div>
+        </div>
+      )}
+
+      {/* Customers Tab */}
+      {activeTab === 'customers' && (
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-white p-8 rounded-xl shadow-lg text-gray-900 border-l-4 border-green-500">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="bg-green-100 p-2 rounded-lg text-green-600">
+                <span className="text-xl">👥</span>
+              </div>
+              <h2 className="text-2xl font-bold">Registered Customers</h2>
+            </div>
+            
+            {loading ? <p className="text-gray-500">Loading customers...</p> : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-gray-100 border-b">
+                      <th className="px-6 py-4 font-bold text-gray-500 uppercase text-xs tracking-wider">Join Date</th>
+                      <th className="px-6 py-4 font-bold text-gray-500 uppercase text-xs tracking-wider">Full Name</th>
+                      <th className="px-6 py-4 font-bold text-gray-500 uppercase text-xs tracking-wider">Email Address</th>
+                      <th className="px-6 py-4 font-bold text-gray-500 uppercase text-xs tracking-wider">Phone Number</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {profiles.map(profile => (
+                      <tr key={profile.id} className="border-b hover:bg-gray-50 transition">
+                        <td className="px-6 py-4 text-sm text-gray-500">
+                          {new Date(profile.created_at).toLocaleDateString()}
+                        </td>
+                        <td className="px-6 py-4 font-bold text-sm">
+                          {profile.full_name || "-"}
+                        </td>
+                        <td className="px-6 py-4 text-sm">
+                          {profile.email}
+                        </td>
+                        <td className="px-6 py-4">
+                           <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-black">
+                            {profile.phone || "Not provided"}
+                           </span>
+                        </td>
+                      </tr>
+                    ))}
+                    {profiles.length === 0 && (
+                      <tr><td colSpan="4" className="px-6 py-8 text-center text-gray-500 italic">No registered customers yet.</td></tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
       )}
