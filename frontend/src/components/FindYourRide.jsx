@@ -150,13 +150,13 @@ export default function FindYourRide() {
             </div>
 
             {/* Results Count & CTA */}
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
               <span className="text-gray-400 text-sm">
                 {filteredBikes.length} {filteredBikes.length === 1 ? "bike" : "bikes"} found
               </span>
-              <Link to="/bikes">
-                <button className="bg-hero-red text-white px-6 py-2.5 rounded font-bold text-sm uppercase tracking-wider hover:bg-red-700 transition-all">
-                  View All
+              <Link to="/bikes" className="w-full sm:w-auto">
+                <button className="w-full sm:w-auto bg-hero-red text-white px-8 py-3 rounded font-bold text-sm uppercase tracking-wider hover:bg-red-700 transition-all">
+                  View All Models
                 </button>
               </Link>
             </div>

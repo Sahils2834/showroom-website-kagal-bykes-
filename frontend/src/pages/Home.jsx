@@ -43,15 +43,15 @@ export default function Home() {
       <section className="py-24 px-6 relative">
         <div className="absolute inset-0 bg-hero-gray/30 skew-y-2 transform origin-top-left -z-10"></div>
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-center mb-16 text-center">
-            <h3 className="text-hero-red uppercase tracking-[0.3em] font-bold text-sm mb-3">Our Legacy</h3>
-            <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tight text-white mb-6">
-              Featured Machines
+          <div className="flex flex-col items-center mb-12 sm:mb-16 text-center">
+            <h3 className="text-hero-red uppercase tracking-[0.3em] font-black text-[10px] mb-3">Our Legacy</h3>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-black uppercase tracking-tighter italic text-white mb-6">
+              Featured <span className="text-hero-red">Machines</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-hero-red to-transparent"></div>
+            <div className="w-24 h-[2px] bg-gradient-to-r from-hero-red to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {featuredBikes.slice(0, 6).map((bike) => (
               <BikeCard bike={bike} key={bike.id} />
             ))}

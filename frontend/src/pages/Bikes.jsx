@@ -27,60 +27,76 @@ export default function Bikes(){
   if (loading) return <div className="min-h-screen pt-32 pb-10 text-center text-white text-2xl">Loading Bikes...</div>;
 
   return(
-    <div className="bg-gray-50 min-h-screen pt-24 pb-10">
+    <div className="bg-hero-dark min-h-screen pt-32 pb-20 text-white">
       
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 mb-12">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">Explore Our Bikes</h1>
-        <p className="text-xl text-gray-600">Find your perfect ride from our extensive collection</p>
+      <div className="max-w-7xl mx-auto px-6 mb-16 text-left">
+        <h1 className="text-5xl md:text-7xl font-display font-black uppercase italic tracking-tighter mb-4 text-white">
+          Explore Our <span className="text-hero-red">Machines</span>
+        </h1>
+        <p className="text-xl text-gray-400 font-light max-w-2xl">
+          Precision engineered for performance. Find your perfect ride from our extensive collection.
+        </p>
       </div>
 
       {/* Filters & Bikes Container */}
-      <div className="max-w-7xl mx-auto px-4 pb-10">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <div className="max-w-7xl mx-auto px-6 pb-20">
+        <div className="flex flex-col lg:flex-row gap-12">
           
           {/* Sidebar Filters */}
-          <div className="lg:w-64 flex-shrink-0">
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-20">
+          <div className="w-full lg:w-72 flex-shrink-0">
+            <div className="bg-hero-gray/30 backdrop-blur-sm rounded-3xl border border-white/5 p-8 sticky top-32">
               
               {/* Category Filter */}
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Categories</h3>
-              <div className="space-y-3 mb-8">
-                {categories.map(category => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`w-full text-left px-4 py-2 rounded-lg transition font-semibold ${
-                      selectedCategory === category
-                        ? "bg-red-500 text-white"
-                        : "bg-gray-100 text-gray-900 hover:bg-gray-200"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
+              <div className="mb-10">
+                <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-hero-red mb-6 flex items-center gap-2">
+                  <span className="w-4 h-[1px] bg-hero-red"></span>
+                  Categories
+                </h3>
+                <div className="space-y-2">
+                  {categories.map(category => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`w-full text-left px-5 py-3 rounded-xl transition-all duration-300 font-display font-black text-sm uppercase tracking-widest border ${
+                        selectedCategory === category
+                          ? "bg-hero-red border-hero-red text-white shadow-[0_0_15px_rgba(231,25,34,0.3)]"
+                          : "bg-hero-dark border-white/5 text-gray-400 hover:border-hero-red/50 hover:text-white"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Price Range Filter */}
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Price Range</h3>
-              <div className="mb-6">
-                <input
-                  type="range"
-                  min="0"
-                  max="500000"
-                  value={priceRange}
-                  onChange={(e) => setPriceRange(Number(e.target.value))}
-                  className="w-full"
-                />
-                <p className="text-sm text-gray-600 mt-2">
-                  Up to: ₹{priceRange.toLocaleString()}
-                </p>
+              <div className="mb-10">
+                <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-hero-red mb-6 flex items-center gap-2">
+                  <span className="w-4 h-[1px] bg-hero-red"></span>
+                  Price Range
+                </h3>
+                <div className="px-1">
+                  <div className="flex justify-between items-end mb-4">
+                    <span className="text-[10px] text-gray-500 uppercase font-black">Up to</span>
+                    <span className="text-xl font-display font-black text-white italic">₹{priceRange.toLocaleString()}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="500000"
+                    step="5000"
+                    value={priceRange}
+                    onChange={(e) => setPriceRange(Number(e.target.value))}
+                    className="w-full accent-hero-red h-1.5 bg-white/10 rounded-lg cursor-pointer appearance-none"
+                  />
+                </div>
               </div>
 
               {/* Comparison Button */}
               {selectedBikes.length > 0 && (
-                <button className="w-full bg-blue-500 text-white py-2 rounded-lg font-bold hover:bg-blue-600 transition">
-                  Compare {selectedBikes.length} Bike{selectedBikes.length !== 1 ? 's' : ''}
+                <button className="w-full bg-white text-black py-4 rounded-xl font-display font-black uppercase tracking-widest text-sm hover:bg-hero-red hover:text-white transition-all duration-300 shadow-xl">
+                  Compare {selectedBikes.length} Machines
                 </button>
               )}
             </div>
@@ -88,34 +104,39 @@ export default function Bikes(){
 
           {/* Bikes Grid */}
           <div className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {filteredBikes.length > 0 ? (
                 filteredBikes.map((bike) => (
-                  <div key={bike.id} className="relative">
+                  <div key={bike.id} className="relative group/card">
                     <BikeCard bike={bike} />
                     {/* Compare Checkbox */}
                     <button
                       onClick={() => toggleCompare(bike)}
-                      className={`absolute top-4 right-4 w-6 h-6 rounded border-2 flex items-center justify-center transition ${
+                      className={`absolute top-6 right-6 w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-300 z-20 backdrop-blur-md ${
                         selectedBikes.find(b => b.id === bike.id)
-                          ? "bg-blue-500 border-blue-500 text-white"
-                          : "border-gray-300 hover:border-blue-500"
+                          ? "bg-hero-red border-hero-red text-white"
+                          : "bg-black/20 border-white/20 text-white/50 hover:border-hero-red hover:text-white"
                       }`}
                     >
-                      {selectedBikes.find(b => b.id === bike.id) && "✓"}
+                      {selectedBikes.find(b => b.id === bike.id) ? "✓" : "+"}
                     </button>
                   </div>
                 ))
               ) : (
-                <div className="col-span-full text-center py-12">
-                  <p className="text-2xl text-gray-600">No bikes found in this category</p>
+                <div className="col-span-full py-24 text-center bg-hero-gray/20 rounded-[3rem] border border-white/5">
+                  <p className="text-3xl font-display font-black text-white uppercase italic tracking-tighter mb-4">No Machines Match</p>
+                  <p className="text-gray-500 font-light">Try adjusting your filters or category choice.</p>
                 </div>
               )}
             </div>
 
             {/* Results Count */}
-            <div className="mt-8 text-center text-gray-600">
-              <p>Showing {filteredBikes.length} of {bikes.length} bikes</p>
+            <div className="mt-16 flex items-center gap-6">
+              <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+              <p className="text-[10px] uppercase font-bold tracking-[0.4em] text-gray-500">
+                Showing <span className="text-white">{filteredBikes.length}</span> of <span className="text-white">{bikes.length}</span> Machines
+              </p>
+              <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             </div>
           </div>
         </div>

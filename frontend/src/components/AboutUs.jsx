@@ -7,14 +7,12 @@ export default function AboutUs() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h3 className="text-hero-red uppercase tracking-[0.3em] font-bold text-sm mb-3">
-            Who We Are
-          </h3>
-          <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tight text-white mb-4">
-            About Kagal Bykes
+        <div className="flex flex-col items-center mb-16 text-center">
+          <h3 className="text-hero-red uppercase tracking-[0.4em] font-black text-[10px] mb-3">Who We Are</h3>
+          <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tighter italic text-white mb-6">
+            About Kagal <span className="text-hero-red">Bykes</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-hero-red to-transparent mx-auto" />
+          <div className="w-24 h-[2px] bg-gradient-to-r from-hero-red to-transparent"></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -27,18 +25,18 @@ export default function AboutUs() {
             className="relative"
           >
             <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-hero-red/10">
-              {/* Replace src with your showroom photo */}
+
               <img
-                src="/images/about-us.jpg"
+                src="/images/about-us.jpeg"
                 alt="Kagal Bykes Showroom"
-                className="w-full h-[400px] object-cover"
+                className="w-full h-[300px] md:h-[400px] object-cover object-top transition-transform duration-700 hover:scale-105"
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.nextSibling.style.display = "flex";
                 }}
               />
               <div
-                className="w-full h-[400px] bg-gradient-to-br from-hero-gray to-hero-dark items-center justify-center"
+                className="w-full h-[300px] md:h-[400px] bg-gradient-to-br from-hero-gray to-hero-dark items-center justify-center"
                 style={{ display: "none" }}
               >
                 <div className="text-center">
@@ -46,7 +44,6 @@ export default function AboutUs() {
                     Showroom Photo
                   </p>
                   <p className="text-gray-600 text-sm">
-                    Add your image at /images/about-us.jpg
                   </p>
                 </div>
               </div>
@@ -79,22 +76,22 @@ export default function AboutUs() {
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
-              <div>
-                <p className="text-3xl font-display font-black text-hero-red">500+</p>
-                <p className="text-gray-500 text-xs uppercase tracking-widest mt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-center sm:text-left">
+              <div className="bg-white/5 py-4 px-2 rounded-xl sm:bg-transparent sm:py-0 sm:px-0">
+                <p className="text-3xl font-display font-black text-hero-red">5000+</p>
+                <p className="text-gray-500 text-[10px] uppercase tracking-widest mt-1">
                   Happy Customers
                 </p>
               </div>
-              <div>
-                <p className="text-3xl font-display font-black text-hero-red">8+</p>
-                <p className="text-gray-500 text-xs uppercase tracking-widest mt-1">
+              <div className="bg-white/5 py-4 px-2 rounded-xl sm:bg-transparent sm:py-0 sm:px-0">
+                <p className="text-3xl font-display font-black text-hero-red">20+</p>
+                <p className="text-gray-500 text-[10px] uppercase tracking-widest mt-1">
                   Years of Service
                 </p>
               </div>
-              <div>
+              <div className="bg-white/5 py-4 px-2 rounded-xl sm:bg-transparent sm:py-0 sm:px-0">
                 <p className="text-3xl font-display font-black text-hero-red">100%</p>
-                <p className="text-gray-500 text-xs uppercase tracking-widest mt-1">
+                <p className="text-gray-500 text-[10px] uppercase tracking-widest mt-1">
                   Genuine Parts
                 </p>
               </div>

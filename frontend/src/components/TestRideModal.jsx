@@ -97,7 +97,7 @@ export default function TestRideModal({ isOpen, onClose, preselectedBike }) {
                     className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-gray-600 focus:outline-none focus:border-hero-red transition" placeholder="Your name" />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-gray-400 text-xs uppercase tracking-wider block mb-1">Email</label>
                     <input name="email" type="email" value={formData.email} onChange={handleChange} required

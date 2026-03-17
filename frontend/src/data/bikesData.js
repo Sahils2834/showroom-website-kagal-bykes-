@@ -368,23 +368,33 @@ export const financeOptions = [
   },
   {
     id: 3,
-    name: "Bajaj Finance",
+    name: "Hero FinCorp",
     provider: "NBFC",
-    description: "Quick approval process with minimal paperwork and competitive terms.",
-    interest: "8% - 12%",
+    description: "Special schemes for Hero MotoCorp customers with quick digital processing.",
+    interest: "10% - 14%",
     tenure: "12-60 months",
-    features: ["Quick Approval", "Minimal Documentation", "Easy Online Application", "Same Day Disbursal"],
-    logo: ""
+    features: ["Digital Processing", "Special Hero Schemes", "Minimal Paperwork", "Quick Disbursal"],
+    logo: "/images/hero fincorp.webp"
   },
   {
     id: 4,
-    name: "Axis Finance",
+    name: "Shriram Finance",
     provider: "NBFC",
-    description: "Flexible financing solutions tailored to your budget and needs.",
-    interest: "9% - 13%",
+    description: "Reliable rural and semi-urban financing with flexible repayment options.",
+    interest: "10.5% - 15%",
+    tenure: "12-48 months",
+    features: ["Rural Friendly", "Flexible Documentation", "Hassle-free Process", "Doorstep Service"],
+    logo: "/images/Shriram_Finance_Logo.jpg"
+  },
+  {
+    id: 5,
+    name: "L&T Finance",
+    provider: "NBFC",
+    description: "Quick and easy two-wheeler loans with competitive interest rates.",
+    interest: "9.9% - 14%",
     tenure: "12-60 months",
-    features: ["Customized Plans", "Transparent Terms", "Quick Processing", "No Hidden Charges"],
-    logo: ""
+    features: ["Instant Sanction", "Competitive Rates", "Minimal Paperwork", "Wide Network"],
+    logo: "/images/LT Finance Logo.webp"
   }
 ];
 

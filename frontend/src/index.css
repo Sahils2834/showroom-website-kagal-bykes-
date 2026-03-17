@@ -5,14 +5,15 @@
 @tailwind utilities;
 
 @layer base {
-  html, body {
+  html {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #000000;
-    color: #ffffff;
+  }
+
+  body {
+    @apply bg-hero-dark text-white selection:bg-hero-red selection:text-white;
     font-family: 'Inter', sans-serif;
-    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {

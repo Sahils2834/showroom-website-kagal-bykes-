@@ -95,27 +95,27 @@ export default function HeroSlider() {
                       <h2 className="text-sm md:text-lg font-bold tracking-[0.3em] text-hero-red mb-4 uppercase">
                         Introducing
                       </h2>
-                      <h1 className="text-5xl md:text-7xl font-display font-black leading-tight mb-6 uppercase tracking-tight">
+                      <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-black leading-tight mb-6 uppercase tracking-tight">
                         {slide.title}
                       </h1>
-                      <p className="text-lg md:text-2xl font-light text-gray-300 mb-10 tracking-wide uppercase">
+                      <p className="text-base md:text-2xl font-light text-gray-300 mb-8 tracking-wide uppercase">
                         {slide.desc}
                       </p>
                       
-                      <div className={`flex gap-4 ${
-                        slide.align === 'center' ? 'justify-center' : 
-                        slide.align === 'right' ? 'justify-end' : 'justify-start'
+                      <div className={`flex flex-col sm:flex-row gap-4 ${
+                        slide.align === 'center' ? 'justify-center items-center' : 
+                        slide.align === 'right' ? 'justify-end items-end sm:items-center' : 'justify-start items-start sm:items-center'
                       }`}>
-                        <Link to="/bikes">
-                          <button className="bg-hero-red hover:bg-hero-red-light text-white px-8 py-4 rounded font-bold tracking-wider uppercase transition-all duration-300 shadow-lg shadow-hero-red/30 hover:-translate-y-1">
-                            EXPLORE BIKE
+                        <Link to="/bikes" className="w-full sm:w-auto">
+                          <button className="w-full sm:w-auto bg-hero-red hover:bg-hero-red-light text-white px-8 py-3.5 rounded font-bold tracking-wider uppercase transition-all duration-300 shadow-lg shadow-hero-red/30 hover:-translate-y-1">
+                            EXPLORE
                           </button>
                         </Link>
                         <button
                           onClick={() => setShowTestRide(true)}
-                          className="border border-white/30 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded font-bold tracking-wider uppercase transition-all duration-300"
+                          className="w-full sm:w-auto border border-white/30 hover:border-white hover:bg-white/10 text-white px-8 py-3.5 rounded font-bold tracking-wider uppercase transition-all duration-300"
                         >
-                          BOOK TEST RIDE
+                          TEST RIDE
                         </button>
                       </div>
                     </motion.div>

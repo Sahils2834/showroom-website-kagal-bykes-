@@ -62,8 +62,8 @@ export default function PrivacyPolicy() {
               </p>
               <div className="mt-4 p-6 bg-white/5 border border-white/10 rounded-xl">
                 <p className="font-bold text-white">Kagal Bykes</p>
-                <p>Shivaji Chowk, Main Road, Kagal, Maharashtra 416216</p>
-                <p>Email: svaitashte85@gmail.com</p>
+                <p>JAISINGH RAO PARK, Main Road, Kagal, Maharashtra 416216</p>
+                <p>Email: savitashete85@gmail.com</p>
                 <p>Phone: 9623449324</p>
               </div>
             </section>

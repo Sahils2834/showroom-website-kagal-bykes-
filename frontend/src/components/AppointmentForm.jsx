@@ -77,122 +77,174 @@ export default function AppointmentForm() {
   const minDate = tomorrow.toISOString().split('T')[0];
 
   return (
-    <form onSubmit={submit} className="bg-white rounded-xl shadow-lg p-8">
-      <h2 className="text-3xl font-bold text-gray-900 mb-6">
-        Book Your Appointment
-      </h2>
+    <form onSubmit={submit} className="bg-hero-gray/20 backdrop-blur-sm rounded-[2rem] border border-white/5 p-8 md:p-12 relative overflow-hidden group">
+      {/* Decorative Glow */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-hero-red/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-hero-red/10 transition-all duration-700"></div>
 
-      {submitted && (
-        <div className="mb-6 p-4 rounded-lg bg-green-100 border-2 border-green-500 text-green-700 font-bold">
-          ✓ Appointment booked successfully! Our team will contact you soon.
-        </div>
-      )}
-
-      {error && (
-        <div className="mb-6 p-4 rounded-lg bg-red-100 border-2 border-red-500 text-red-700 font-bold">
-          {error}
-        </div>
-      )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div>
-          <label className="block text-sm font-bold text-gray-700 mb-2">Full Name *</label>
-          <input type="text" required value={form.name}
-            onChange={(e) => setForm({...form, name: e.target.value})}
-            placeholder="Enter your full name"
-            className="w-full border-2 border-gray-300 p-3 rounded-lg focus:outline-none focus:border-red-500" />
+      <div className="relative z-10">
+        <div className="mb-10 text-center md:text-left">
+          <span className="text-hero-red font-bold uppercase tracking-[0.3em] text-xs mb-3 block">Reservation</span>
+          <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase italic tracking-tighter">
+            Book Your <span className="text-hero-red">Experience</span>
+          </h2>
+          <p className="text-gray-400 mt-2 font-light">Schedule a test ride or service appointment with our experts.</p>
         </div>
 
-        <div>
-          <label className="block text-sm font-bold text-gray-700 mb-2">Phone Number *</label>
-          <input type="tel" required value={form.phone}
-            onChange={(e) => setForm({...form, phone: e.target.value})}
-            placeholder="9999999999"
-            className="w-full border-2 border-gray-300 p-3 rounded-lg focus:outline-none focus:border-red-500" />
-        </div>
+        {submitted && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8 p-6 rounded-2xl bg-green-500/10 border border-green-500/30 text-green-400 font-bold flex items-center gap-4"
+          >
+            <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-xl">✓</div>
+            <div>
+              <p>Appointment requested successfully!</p>
+              <p className="text-sm font-light opacity-80 text-white mt-1">Our concierge team will contact you shortly.</p>
+            </div>
+          </motion.div>
+        )}
 
-        <div>
-          <label className="block text-sm font-bold text-gray-700 mb-2">Email *</label>
-          <input type="email" required value={form.email}
-            onChange={(e) => setForm({...form, email: e.target.value})}
-            placeholder="email@example.com"
-            className="w-full border-2 border-gray-300 p-3 rounded-lg focus:outline-none focus:border-red-500" />
-        </div>
+        {error && (
+          <div className="mb-8 p-6 rounded-2xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold">
+            {error}
+          </div>
+        )}
 
-        <div>
-          <label className="block text-sm font-bold text-gray-700 mb-2">Select Bike *</label>
-          <select required value={form.bike}
-            onChange={(e) => setForm({...form, bike: e.target.value})}
-            className="w-full border-2 border-gray-300 p-3 rounded-lg focus:outline-none focus:border-red-500 text-gray-900">
-            <option value="" className="text-gray-900">Choose a bike...</option>
-            {(bikes || []).map(bike => (
-              <option key={bike.id} value={bike.id} className="text-gray-900">{bike.name}</option>
-            ))}
-          </select>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-black ml-1 block">Full Name</label>
+            <input 
+              type="text" 
+              required 
+              value={form.name}
+              onChange={(e) => setForm({...form, name: e.target.value})}
+              placeholder="John Doe"
+              className="w-full bg-hero-dark border border-white/10 p-4 rounded-xl focus:outline-none focus:border-hero-red text-white transition-all placeholder:text-gray-700" 
+            />
+          </div>
 
-        <div>
-          <label className="block text-sm font-bold text-gray-700 mb-2">Preferred Date *</label>
-          <input type="date" required min={minDate} value={form.date}
-            onChange={(e) => setForm({...form, date: e.target.value})}
-            className="w-full border-2 border-gray-300 p-3 rounded-lg focus:outline-none focus:border-red-500" />
-        </div>
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-black ml-1 block">Phone Number</label>
+            <input 
+              type="tel" 
+              required 
+              value={form.phone}
+              onChange={(e) => setForm({...form, phone: e.target.value})}
+              placeholder="+91 00000 00000"
+              className="w-full bg-hero-dark border border-white/10 p-4 rounded-xl focus:outline-none focus:border-hero-red text-white transition-all placeholder:text-gray-700" 
+            />
+          </div>
 
-        <div>
-          <label className="block text-sm font-bold text-gray-700 mb-2">Preferred Time</label>
-          <select value={form.time}
-            onChange={(e) => setForm({...form, time: e.target.value})}
-            className="w-full border-2 border-gray-300 p-3 rounded-lg focus:outline-none focus:border-red-500 text-gray-900">
-            <option value="10:00" className="text-gray-900">10:00 AM</option>
-            <option value="11:00" className="text-gray-900">11:00 AM</option>
-            <option value="12:00" className="text-gray-900">12:00 PM</option>
-            <option value="14:00" className="text-gray-900">2:00 PM</option>
-            <option value="15:00" className="text-gray-900">3:00 PM</option>
-            <option value="16:00" className="text-gray-900">4:00 PM</option>
-            <option value="17:00" className="text-gray-900">5:00 PM</option>
-          </select>
-        </div>
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-black ml-1 block">Email Address</label>
+            <input 
+              type="email" 
+              required 
+              value={form.email}
+              onChange={(e) => setForm({...form, email: e.target.value})}
+              placeholder="john@example.com"
+              className="w-full bg-hero-dark border border-white/10 p-4 rounded-xl focus:outline-none focus:border-hero-red text-white transition-all placeholder:text-gray-700" 
+            />
+          </div>
 
-        <div className="md:col-span-2">
-          <label className="block text-sm font-bold text-gray-700 mb-3">Appointment Type</label>
-          <div className="flex gap-4 flex-wrap">
-            {[
-              { value: 'test-ride', label: 'Test Ride' },
-              { value: 'service', label: 'Service' },
-              { value: 'finance', label: 'Finance' },
-              { value: 'consultation', label: 'Consultation' }
-            ].map(type => (
-              <button key={type.value} type="button"
-                onClick={() => setForm({...form, appointmentType: type.value})}
-                className={`px-4 py-2 rounded-lg font-semibold transition ${
-                  form.appointmentType === type.value
-                    ? 'bg-red-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}>
-                {type.label}
-              </button>
-            ))}
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-black ml-1 block">Select Machine</label>
+            <select 
+              required 
+              value={form.bike}
+              onChange={(e) => setForm({...form, bike: e.target.value})}
+              className="w-full bg-hero-dark border border-white/10 p-4 rounded-xl focus:outline-none focus:border-hero-red text-white transition-all appearance-none cursor-pointer"
+            >
+              <option value="" className="bg-hero-dark">Choose a model...</option>
+              {(bikes || []).map(bike => (
+                <option key={bike.id} value={bike.id} className="bg-hero-dark">{bike.name}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-black ml-1 block">Preferred Date</label>
+            <input 
+              type="date" 
+              required 
+              min={minDate} 
+              value={form.date}
+              onChange={(e) => setForm({...form, date: e.target.value})}
+              className="w-full bg-hero-dark border border-white/10 p-4 rounded-xl focus:outline-none focus:border-hero-red text-white transition-all color-white" 
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-black ml-1 block">Time Slot</label>
+            <select 
+              value={form.time}
+              onChange={(e) => setForm({...form, time: e.target.value})}
+              className="w-full bg-hero-dark border border-white/10 p-4 rounded-xl focus:outline-none focus:border-hero-red text-white transition-all appearance-none cursor-pointer"
+            >
+              <option value="10:00" className="bg-hero-dark">10:00 AM</option>
+              <option value="11:00" className="bg-hero-dark">11:00 AM</option>
+              <option value="12:00" className="bg-hero-dark">12:00 PM</option>
+              <option value="14:00" className="bg-hero-dark">2:00 PM</option>
+              <option value="15:00" className="bg-hero-dark">3:00 PM</option>
+              <option value="16:00" className="bg-hero-dark">4:00 PM</option>
+              <option value="17:00" className="bg-hero-dark">5:00 PM</option>
+            </select>
+          </div>
+
+          <div className="md:col-span-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-black ml-1 mb-4 block">Appointment Type</label>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { value: 'test-ride', label: 'Test Ride' },
+                { value: 'service', label: 'Service' },
+                { value: 'finance', label: 'Finance' },
+                { value: 'consultation', label: 'Consultation' }
+              ].map(type => (
+                <button 
+                  key={type.value} 
+                  type="button"
+                  onClick={() => setForm({...form, appointmentType: type.value})}
+                  className={`py-3 rounded-xl font-display font-black text-[10px] uppercase tracking-widest transition-all duration-300 border ${
+                    form.appointmentType === type.value
+                      ? 'bg-hero-red border-hero-red text-white shadow-[0_0_15px_rgba(231,25,34,0.4)]'
+                      : 'bg-hero-dark border-white/10 text-gray-500 hover:border-hero-red/50 hover:text-white'
+                  }`}
+                >
+                  {type.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="md:col-span-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-black ml-1 block">Additional Notes</label>
+            <textarea 
+              value={form.message}
+              onChange={(e) => setForm({...form, message: e.target.value})}
+              placeholder="Tell us about your requirements..."
+              className="w-full bg-hero-dark border border-white/10 p-4 rounded-xl focus:outline-none focus:border-hero-red text-white resize-none h-32 transition-all placeholder:text-gray-700 mt-2"
+            />
           </div>
         </div>
 
-        <div className="md:col-span-2">
-          <label className="block text-sm font-bold text-gray-700 mb-2">Additional Message</label>
-          <textarea value={form.message}
-            onChange={(e) => setForm({...form, message: e.target.value})}
-            placeholder="Any special requests or questions..."
-            className="w-full border-2 border-gray-300 p-3 rounded-lg focus:outline-none focus:border-red-500 resize-none"
-            rows="4" />
-        </div>
+        <button 
+          type="submit" 
+          disabled={loading}
+          className="w-full bg-white text-black hover:bg-hero-red hover:text-white px-8 py-5 rounded-2xl font-display font-black uppercase tracking-widest text-lg transition-all duration-500 transform active:scale-95 disabled:opacity-50 shadow-2xl shadow-black/40"
+        >
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{ animationDelay: '0ms' }}></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{ animationDelay: '150ms' }}></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{ animationDelay: '300ms' }}></span>
+            </span>
+          ) : "Confirm Appointment"}
+        </button>
+
+        <p className="text-[10px] text-gray-600 mt-6 text-center uppercase tracking-widest font-medium">
+          * Premium concierge service. No hidden charges.
+        </p>
       </div>
-
-      <button type="submit" disabled={loading}
-        className="w-full bg-red-500 text-white px-6 py-3 rounded-lg font-bold text-lg hover:bg-red-600 transition transform hover:scale-105 shadow-lg disabled:opacity-50">
-        {loading ? "Booking..." : "Book Appointment Now"}
-      </button>
-
-      <p className="text-xs text-gray-600 mt-4 text-center">
-        * Required fields. We will confirm your appointment within 24 hours.
-      </p>
     </form>
   );
 }

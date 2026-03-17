@@ -7,178 +7,145 @@ export default function Services(){
   const [selectedService, setSelectedService] = useState(null);
 
   return(
-    <div className="bg-gray-50 min-h-screen pt-24 pb-10">
+    <div className="bg-hero-dark min-h-screen pt-32 pb-20 text-white">
       
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 mb-12">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">Garage Services</h1>
-        <p className="text-xl text-gray-600">Complete bike care and maintenance solutions</p>
+      <div className="max-w-7xl mx-auto px-6 mb-20 text-left">
+        <h1 className="text-5xl md:text-7xl font-display font-black uppercase italic tracking-tighter mb-4 text-white">
+          Expert <span className="text-hero-red">Garage</span>
+        </h1>
+        <p className="text-xl text-gray-400 font-light max-w-2xl">
+          Precision maintenance and genuine care for your Hero machine. Keep the thrill alive with our expert services.
+        </p>
       </div>
 
       {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-4 mb-16">
+      <div className="max-w-7xl mx-auto px-6 mb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {serviceCategories.map((service) => (
             <div
               key={service.id}
               onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
-              className={`p-6 rounded-xl shadow-lg cursor-pointer transition transform hover:scale-105 ${
+              className={`p-8 rounded-[2rem] border transition-all duration-500 cursor-pointer relative group overflow-hidden ${
                 selectedService === service.id
-                  ? "bg-red-500 text-white"
-                  : "bg-white text-gray-900 hover:shadow-xl"
+                  ? "bg-hero-red border-hero-red shadow-2xl shadow-hero-red/30 scale-[1.02]"
+                  : "bg-hero-gray/30 border-white/5 hover:border-hero-red/30 hover:bg-hero-gray/50"
               }`}
             >
-              <h3 className="text-xl font-bold mb-2">{service.name}</h3>
-              <p className={`text-sm mb-4 ${selectedService === service.id ? "text-red-100" : "text-gray-600"}`}>
-                {service.description}
-              </p>
-              <div className={`flex justify-between items-center pt-4 border-t ${selectedService === service.id ? "border-red-400" : "border-gray-200"}`}>
-                <span className="font-bold">₹{service.price}</span>
-                <span className="text-sm">{service.time}</span>
+              <div className="relative z-10">
+                <h3 className="text-xl font-display font-black uppercase italic tracking-tight mb-3">
+                  {service.name}
+                </h3>
+                <p className={`text-sm mb-8 font-light leading-relaxed ${selectedService === service.id ? "text-white/90" : "text-gray-400"}`}>
+                  {service.description}
+                </p>
+                <div className={`flex justify-between items-center pt-6 border-t ${selectedService === service.id ? "border-white/20" : "border-white/5"}`}>
+                  <span className="font-display font-black italic text-lg">₹{service.price}</span>
+                  <span className="text-[10px] uppercase font-black tracking-widest">{service.time}</span>
+                </div>
+              </div>
+              
+              {/* Decorative Number on hover */}
+              <div className="absolute -bottom-4 -right-4 text-7xl font-display font-black text-white/5 italic group-hover:text-white/10 transition-colors pointer-events-none">
+                0{service.id}
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Service Details */}
+      {/* Service Details & Booking */}
       {selectedService && (
-        <div className="max-w-7xl mx-auto px-4 mb-16">
-          <div className="bg-white rounded-xl shadow-lg p-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-4xl mx-auto px-6 mb-32"
+        >
+          <div className="bg-hero-gray/40 backdrop-blur-xl rounded-[3rem] border border-hero-red/30 p-12 md:p-16 relative overflow-hidden">
             {serviceCategories
               .filter((s) => s.id === selectedService)
               .map((service) => (
-                <div key={service.id}>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">{service.name}</h2>
-                  <p className="text-lg text-gray-600 mb-6">{service.description}</p>
+                <div key={service.id} className="relative z-10">
+                  <span className="text-hero-red font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">Selected Package</span>
+                  <h2 className="text-4xl md:text-5xl font-display font-black text-white mb-6 uppercase italic tracking-tighter">{service.name}</h2>
+                  <p className="text-xl text-gray-400 mb-10 font-light italic leading-relaxed">"{service.description}"</p>
                   
-                  <div className="grid grid-cols-2 gap-4 mb-8">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-sm text-gray-600">Service Price</p>
-                      <p className="text-3xl font-bold text-red-500">₹{service.price}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
+                    <div className="bg-black/40 p-8 rounded-3xl border border-white/5">
+                      <p className="text-[10px] uppercase font-black tracking-widest text-gray-500 mb-2">Service Fee</p>
+                      <p className="text-4xl font-display font-black text-hero-red italic">₹{service.price}</p>
                     </div>
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-sm text-gray-600">Duration</p>
-                      <p className="text-3xl font-bold text-blue-500">{service.time}</p>
+                    <div className="bg-black/40 p-8 rounded-3xl border border-white/5">
+                      <p className="text-[10px] uppercase font-black tracking-widest text-gray-500 mb-2">Est. Turnaround</p>
+                      <p className="text-4xl font-display font-black text-white italic">{service.time}</p>
                     </div>
                   </div>
 
-                  <button className="bg-red-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-red-600 transition">
-                    Book Service Now
+                  <button className="w-full bg-hero-red text-white px-12 py-5 rounded-2xl font-display font-black uppercase tracking-widest hover:bg-hero-red-light transition-all shadow-xl shadow-hero-red/20 transform hover:-translate-y-1">
+                    Initialize Booking
                   </button>
                 </div>
               ))}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-hero-red/10 rounded-full blur-[100px] -mr-32 -mt-32"></div>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* Why Choose Our Services */}
-      <div className="max-w-7xl mx-auto px-4 mb-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Kagal Bykes Services?</h2>
+      <div className="max-w-7xl mx-auto px-6 mb-32">
+        <div className="text-center mb-20 leading-none">
+          <span className="text-hero-red font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">The Excellence</span>
+          <h2 className="text-4xl md:text-6xl font-display font-black text-white uppercase italic tracking-tighter">Certified <span className="text-hero-red">Care</span></h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:scale-105 transition">
-            <div className="text-4xl mb-4 text-red-500"><FaUserCheck className="mx-auto" /></div>
-            <h3 className="font-bold text-gray-900 mb-2">Certified Technicians</h3>
-            <p className="text-gray-600 text-sm">Trained Hero service experts</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:scale-105 transition">
-            <div className="text-4xl mb-4 text-red-500"><FaCogs className="mx-auto" /></div>
-            <h3 className="font-bold text-gray-900 mb-2">Genuine Parts</h3>
-            <p className="text-gray-600 text-sm">100% original spare parts</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:scale-105 transition">
-            <div className="text-4xl mb-4 text-red-500"><FaBolt className="mx-auto" /></div>
-            <h3 className="font-bold text-gray-900 mb-2">Quick Service</h3>
-            <p className="text-gray-600 text-sm">Fast turnaround time</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:scale-105 transition">
-            <div className="text-4xl mb-4 text-red-500"><FaClipboardList className="mx-auto" /></div>
-            <h3 className="font-bold text-gray-900 mb-2">Service Records</h3>
-            <p className="text-gray-600 text-sm">Digital service history</p>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { icon: <FaUserCheck className="mx-auto" />, title: "Certified Techs", desc: "Trained Hero experts" },
+            { icon: <FaCogs className="mx-auto" />, title: "Genuine Spares", desc: "100% original Hero parts" },
+            { icon: <FaBolt className="mx-auto" />, title: "Rapid Turnaround", desc: "Express service options" },
+            { icon: <FaClipboardList className="mx-auto" />, title: "Digital Logs", desc: "Modern maintenance history" }
+          ].map((item, i) => (
+            <div key={i} className="bg-hero-gray/20 p-10 rounded-3xl border border-white/5 text-center group hover:bg-hero-gray/40 transition-all duration-500">
+              <div className="text-5xl mb-6 text-hero-red transform group-hover:scale-110 transition-transform">{item.icon}</div>
+              <h3 className="font-display font-black text-white mb-2 uppercase italic tracking-tight">{item.title}</h3>
+              <p className="text-gray-500 text-xs font-medium uppercase tracking-widest">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Service Process */}
-      <div className="max-w-7xl mx-auto px-4 mb-16 bg-gradient-to-r from-gray-900 to-black text-white p-12 rounded-xl">
-        <h2 className="text-4xl font-bold mb-12 text-center">Our Service Process</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <p className="text-2xl font-bold">1</p>
+      {/* Booking Form Section */}
+      <div className="max-w-7xl mx-auto px-6 mb-32 relative">
+         <div className="absolute inset-0 bg-hero-red/5 blur-[120px] rounded-full w-2/3 mx-auto pointer-events-none"></div>
+         <div className="relative z-10">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-6xl font-display font-black text-white uppercase italic tracking-tighter mb-4">Secure Your <span className="text-hero-red">Slot</span></h2>
+              <p className="text-gray-400 font-light text-xl">Elite maintenance is just a few clicks away.</p>
             </div>
-            <h3 className="font-bold mb-2">Book Service</h3>
-            <p className="text-gray-300 text-sm">Schedule your appointment online or call</p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <p className="text-2xl font-bold">2</p>
-            </div>
-            <h3 className="font-bold mb-2">Drop Your Bike</h3>
-            <p className="text-gray-300 text-sm">Bring your bike at the scheduled time</p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <p className="text-2xl font-bold">3</p>
-            </div>
-            <h3 className="font-bold mb-2">Professional Service</h3>
-            <p className="text-gray-300 text-sm">Expert technicians work on your bike</p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <p className="text-2xl font-bold">4</p>
-            </div>
-            <h3 className="font-bold mb-2">Pick Your Bike</h3>
-            <p className="text-gray-300 text-sm">Get your bike back in perfect condition</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Booking Section */}
-      <div className="max-w-7xl mx-auto px-4 mb-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Book Your Service</h2>
-          <p className="text-lg text-gray-600">Schedule your service appointment today</p>
-        </div>
-        <AppointmentForm />
+            <AppointmentForm />
+         </div>
       </div>
 
       {/* FAQ */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">FAQs</h2>
+      <div className="max-w-4xl mx-auto px-6 pb-20">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-display font-black text-white uppercase italic tracking-tighter">Service <span className="text-hero-red">Intelligence</span></h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
-            <h3 className="font-bold text-gray-900 mb-3">How often should I service my bike?</h3>
-            <p className="text-gray-600">We recommend service every 3-4 months or as per manufacturer's schedule.</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
-            <h3 className="font-bold text-gray-900 mb-3">Do you use original parts?</h3>
-            <p className="text-gray-600">Yes, 100% original Hero genuine parts are used in all services.</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
-            <h3 className="font-bold text-gray-900 mb-3">What's the warranty on services?</h3>
-            <p className="text-gray-600">All services come with 1 month warranty on parts and workmanship.</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
-            <h3 className="font-bold text-gray-900 mb-3">Do you offer free pick & drop?</h3>
-            <p className="text-gray-600">Free pick & drop available for purchases above ₹5000. Call us for details.</p>
-          </div>
+        <div className="space-y-4">
+          {[
+            { q: "Service frequency?", a: "We recommend professional service every 3000-4000 km or 4 months." },
+            { q: "Original parts?", a: "Exclusively. We only use certified Hero Genuine Parts for maximum performance." },
+            { q: "Service warranty?", a: "All professional work carries a 30-day technical assurance period." },
+            { q: "Pick & Drop?", a: "Priority logistics available for premium packages and loyalty members." }
+          ].map((faq, i) => (
+            <div key={i} className="bg-hero-gray/20 border border-white/5 p-8 rounded-2xl hover:border-hero-red/30 transition-all">
+              <h3 className="font-display font-black text-white mb-3 uppercase italic tracking-tight flex items-center gap-4">
+                <span className="text-hero-red">Q.</span> {faq.q}
+              </h3>
+              <p className="text-gray-400 font-light leading-relaxed pl-8 border-l border-hero-red/20">{faq.a}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

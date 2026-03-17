@@ -6,56 +6,56 @@ const accessoryCategories = [
   {
     id: 1,
     name: "Helmets & Safety",
-    icon: "",
+    icon: "🪖",
     description: "ISI certified helmets and safety gear for every rider",
     items: ["Full Face Helmets", "Half Face Helmets", "Riding Gloves", "Knee Guards"],
     priceRange: "₹899 – ₹4,999",
-    color: "from-red-600 to-red-900"
+    color: "from-hero-red/20 to-hero-dark"
   },
   {
     id: 2,
     name: "Performance Parts",
-    icon: "",
+    icon: "⚙️",
     description: "Genuine Hero performance upgrades for maximum power",
     items: ["Air Filters", "Exhaust Systems", "Brake Pads", "Spark Plugs"],
     priceRange: "₹299 – ₹8,999",
-    color: "from-orange-600 to-red-800"
+    color: "from-gray-800/20 to-hero-dark"
   },
   {
     id: 3,
     name: "Body & Style",
-    icon: "",
+    icon: "✨",
     description: "Customize your ride with premium body kits and graphics",
     items: ["Tank Pads", "Crash Guards", "Graphics Kits", "Seat Covers"],
     priceRange: "₹499 – ₹6,999",
-    color: "from-blue-600 to-blue-900"
+    color: "from-hero-red/10 to-hero-dark"
   },
   {
     id: 4,
     name: "Riding Gear",
-    icon: "",
+    icon: "🧥",
     description: "Premium riding jackets, boots, and accessories",
     items: ["Riding Jackets", "Riding Boots", "Rain Gear", "Backpacks"],
     priceRange: "₹1,499 – ₹12,999",
-    color: "from-gray-600 to-gray-900"
+    color: "from-gray-900/40 to-hero-dark"
   },
   {
     id: 5,
     name: "Tech & Gadgets",
-    icon: "",
+    icon: "📱",
     description: "Smart devices and tech accessories for modern riders",
-    items: ["Mobile Holders", "Bluetooth Helmet Devices", "GPS Trackers", "USB Chargers"],
+    items: ["Mobile Holders", "Bluetooth Devices", "GPS Trackers", "USB Chargers"],
     priceRange: "₹399 – ₹5,999",
-    color: "from-purple-600 to-purple-900"
+    color: "from-hero-red/15 to-hero-dark"
   },
   {
     id: 6,
     name: "Security",
-    icon: "",
+    icon: "🔒",
     description: "Anti-theft systems and locks to keep your bike safe",
     items: ["Disc Locks", "Chain Locks", "GPS Anti-theft", "Bike Covers"],
     priceRange: "₹599 – ₹7,999",
-    color: "from-green-600 to-green-900"
+    color: "from-gray-800/30 to-hero-dark"
   }
 ];
 
@@ -108,39 +108,43 @@ export default function AccessoriesSection() {
         </div>
 
         {/* Category Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {accessoryCategories.map((cat, i) => (
             <motion.div
               key={cat.id}
-              whileHover={{ y: -5, scale: 1.02 }}
+              whileHover={{ y: -8, scale: 1.01 }}
               onHoverStart={() => setActiveCategory(i)}
-              className={`relative overflow-hidden rounded-xl cursor-pointer group transition-all duration-500 ${
-                activeCategory === i ? "ring-2 ring-hero-red shadow-lg shadow-hero-red/20" : ""
+              className={`relative overflow-hidden rounded-[2rem] cursor-pointer group transition-all duration-500 border border-white/5 ${
+                activeCategory === i ? "border-hero-red/30 shadow-2xl shadow-hero-red/10" : "hover:border-white/10"
               }`}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${cat.color} opacity-80`} />
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500" />
+              <div className={`absolute inset-0 bg-gradient-to-br ${cat.color} opacity-80 group-hover:opacity-100 transition-opacity`} />
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
               
-              <div className="relative z-10 p-6">
-                <span className="text-3xl mb-3 block">{cat.icon}</span>
-                <h3 className="text-xl font-bold text-white mb-2">{cat.name}</h3>
-                <p className="text-white/70 text-sm mb-4">{cat.description}</p>
+              <div className="relative z-10 p-8 sm:p-10">
+                <div className="flex justify-between items-start mb-6">
+                  <span className="text-4xl filter drop-shadow-lg">{cat.icon}</span>
+                  <span className="text-white/20 text-4xl font-display font-black italic">0{cat.id}</span>
+                </div>
+                
+                <h3 className="text-xl font-display font-black text-white mb-2 uppercase italic tracking-tight">{cat.name}</h3>
+                <p className="text-gray-400 text-sm mb-6 font-light leading-relaxed">{cat.description}</p>
                 
                 {/* Items List */}
-                <div className="space-y-1.5 mb-4">
+                <div className="space-y-2 mb-8 border-t border-white/5 pt-6">
                   {cat.items.map((item, j) => (
-                    <span key={j} className="text-white/60 text-xs flex items-center gap-2">
-                      <span className="w-1 h-1 bg-white/40 rounded-full" />
+                    <span key={j} className="text-white/70 text-xs flex items-center gap-2 group-hover:text-white transition-colors">
+                      <span className="w-1 h-1 bg-hero-red rounded-full" />
                       {item}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-white/50 text-xs">{cat.priceRange}</span>
-                  <span className="text-white text-xs font-bold uppercase tracking-wider group-hover:text-hero-red transition-colors flex items-center gap-1">
-                    Explore <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </span>
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-hero-red font-display font-black italic text-sm">{cat.priceRange}</span>
+                  <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-hero-red group-hover:border-hero-red transition-all duration-500">
+                    <span className="text-white text-lg transition-transform group-hover:translate-x-0.5">→</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
