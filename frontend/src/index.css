@@ -9,6 +9,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
     /* Sophisticated scaling for mobile */
     @media (max-width: 639px) {
       font-size: 13px;
@@ -18,6 +19,7 @@
   body {
     @apply bg-hero-dark text-white selection:bg-hero-red selection:text-white;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {

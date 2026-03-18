@@ -29,7 +29,7 @@ export default function AboutUs() {
               <img
                 src="/images/about-us.jpeg"
                 alt="Kagal Bykes Showroom"
-                className="w-full h-[300px] md:h-[400px] object-cover object-top transition-transform duration-700 hover:scale-105"
+                className="w-full h-[300px] md:h-[400px] object-cover object-[center_20%] scale-110 origin-top transition-transform duration-700 hover:scale-115"
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.nextSibling.style.display = "flex";

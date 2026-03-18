@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaMotorcycle, FaGlobe } from "react-icons/fa";
+import { HiMenu, HiX } from "react-icons/hi";
 import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
@@ -61,8 +62,8 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 md:gap-3 group">
-            <img src="/images/Hero_MotoCorp.png" alt="Hero" className="h-6 md:h-8 w-auto transform group-hover:scale-110 transition-transform duration-300" />
-            <h1 className="text-base md:text-2xl font-display font-black tracking-widest text-white uppercase italic">
+            <img src="/images/Hero_MotoCorp.png" alt="Hero" className="h-10 md:h-12 w-auto transform group-hover:scale-110 transition-transform duration-300" />
+            <h1 className="text-sm md:text-xl font-display font-black tracking-widest text-white uppercase italic">
               Kagal<span className="text-hero-red">Bykes</span>
             </h1>
           </Link>
@@ -140,9 +141,9 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden w-12 h-12 flex items-center justify-center rounded-xl border border-hero-red/50 bg-hero-red/10 text-white text-3xl transition-all active:scale-90 shadow-lg shadow-hero-red/20 ${scrolled ? "backdrop-blur-md" : "drop-shadow-2xl"}`}
+            className={`lg:hidden w-11 h-11 flex items-center justify-center rounded-xl border border-hero-red/30 bg-hero-red/5 text-white text-2xl transition-all active:scale-90 shadow-lg shadow-hero-red/10 hover:bg-hero-red/15 ${scrolled ? "backdrop-blur-md" : "drop-shadow-xl"}`}
           >
-            {mobileMenuOpen ? "✕" : "☰"}
+            {mobileMenuOpen ? <HiX /> : <HiMenu />}
           </button>
         </div>
       </div>
@@ -162,16 +163,16 @@ export default function Navbar() {
           {/* Mobile Header */}
           <div className="flex justify-between items-center p-6 border-b border-white/10">
             <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2">
-              <img src="/images/Hero_MotoCorp.png" alt="Hero" className="h-6 w-auto" />
-              <span className="text-xl font-display font-black tracking-widest text-white uppercase italic">
+              <img src="/images/Hero_MotoCorp.png" alt="Hero" className="h-8 w-auto" />
+              <span className="text-lg font-display font-black tracking-widest text-white uppercase italic">
                 Kagal<span className="text-hero-red">Bykes</span>
               </span>
             </Link>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="text-white text-3xl"
+              className="text-white text-3xl hover:text-hero-red transition-all"
             >
-              &times;
+              <HiX />
             </button>
           </div>
 

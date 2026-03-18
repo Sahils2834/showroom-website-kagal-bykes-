@@ -11,7 +11,7 @@ export default function BottomNav() {
     { label: "Dealers", path: "/", hash: "location", icon: <FaMapMarkerAlt /> },
     { label: "Support", path: "/services", icon: <FaHeadset /> },
     { 
-      label: user ? "Account" : "Login", 
+      label: user ? "Profile" : "Login", 
       path: user ? "/account" : "/login", 
       icon: user ? <FaUserCircle className="text-hero-red" /> : <FaUser /> 
     },
