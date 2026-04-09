@@ -46,10 +46,10 @@ export default function OffersSection() {
                 );
               }
               
-              const hasEmojiPrefix = /^[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/.test(trimmed);
+              const emojiMatch = trimmed.match(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])+/);
               
-              if (hasEmojiPrefix) {
-                const emoji = trimmed.match(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])+/)[0];
+              if (emojiMatch) {
+                const emoji = emojiMatch[0];
                 const rest = trimmed.replace(emoji, '').trim();
                 return (
                   <div key={index} className="flex gap-2 items-center mt-4 mb-2 text-white font-bold text-base md:text-lg">
