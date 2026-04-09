@@ -378,7 +378,7 @@ export default function Admin() {
                </div>
                <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">Subtitle / Description</label>
-                  <textarea required value={offerForm.subtitle} onChange={e => setOfferForm({...offerForm, subtitle: e.target.value})} className="w-full border-2 border-gray-200 p-3 rounded-lg h-24" placeholder="Get up to ₹7,000 discount..." />
+                  <textarea required value={offerForm.subtitle} onChange={e => setOfferForm({...offerForm, subtitle: e.target.value})} className="w-full border-2 border-gray-200 p-3 rounded-lg min-h-[400px] whitespace-pre-wrap" placeholder="Get up to ₹7,000 discount..." />
                </div>
                 <button type="submit" className="bg-red-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-red-600 transition tracking-wider uppercase shadow-lg">
                  Save Offer Details

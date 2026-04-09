@@ -47,6 +47,7 @@ export default function Navbar() {
     { label: "Services", path: "/services" },
     { label: "Finance", path: "/finance" },
     { label: "Privacy", path: "/privacy-policy" },
+    { label: "Ask AI", path: "#", isAction: true },
   ];
 
   return (
@@ -71,20 +72,33 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <ul className="hidden lg:flex gap-6 items-center font-display text-xs uppercase tracking-wider font-bold">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`relative group transition duration-300 ${
-                  location.pathname === link.path 
-                    ? "text-hero-red" 
-                    : (scrolled ? "text-white" : "text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]") + " hover:text-hero-red"
-                }`}
-              >
-                {link.label}
-                <span className={`absolute -bottom-2 left-0 h-[2px] transition-all duration-300 bg-hero-red ${
-                  location.pathname === link.path ? "w-full" : "w-0 group-hover:w-full"
-                }`}></span>
-              </Link>
+              link.isAction ? (
+                <button
+                  key={link.label}
+                  onClick={() => window.dispatchEvent(new CustomEvent('open-ai-chat'))}
+                  className={`relative group transition duration-300 ${
+                    scrolled ? "text-white" : "text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
+                  } hover:text-hero-red`}
+                >
+                  {link.label}
+                  <span className="absolute -bottom-2 left-0 h-[2px] w-0 transition-all duration-300 bg-hero-red group-hover:w-full"></span>
+                </button>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`relative group transition duration-300 ${
+                    location.pathname === link.path 
+                      ? "text-hero-red" 
+                      : (scrolled ? "text-white" : "text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]") + " hover:text-hero-red"
+                  }`}
+                >
+                  {link.label}
+                  <span className={`absolute -bottom-2 left-0 h-[2px] transition-all duration-300 bg-hero-red ${
+                    location.pathname === link.path ? "w-full" : "w-0 group-hover:w-full"
+                  }`}></span>
+                </Link>
+              )
             ))}
           </ul>
 
@@ -179,20 +193,32 @@ export default function Navbar() {
           <ul className="flex-1 flex flex-col p-8 overflow-y-auto">
             {navLinks.map((link, i) => (
               <motion.li
-                key={link.path}
+                key={link.label || link.path}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.05 }}
               >
-                <Link
-                  to={link.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block py-4 text-3xl font-display font-black uppercase tracking-tighter transition-colors ${
-                    location.pathname === link.path ? "text-hero-red" : "text-white/60 hover:text-white"
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                {link.isAction ? (
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      window.dispatchEvent(new CustomEvent('open-ai-chat'));
+                    }}
+                    className="block w-full text-left py-4 text-3xl font-display font-black uppercase tracking-tighter text-white/60 hover:text-hero-red transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    to={link.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block py-4 text-3xl font-display font-black uppercase tracking-tighter transition-colors ${
+                      location.pathname === link.path ? "text-hero-red" : "text-white/60 hover:text-white"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </motion.li>
             ))}
           </ul>

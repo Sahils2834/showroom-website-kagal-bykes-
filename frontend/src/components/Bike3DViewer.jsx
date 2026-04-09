@@ -78,10 +78,10 @@ export default function Bike3DViewer() {
               Get closer than ever before. Explore every curve, every detail, and the engineering excellence of our flagship models in a full 360-degree immersive view.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-hero-red text-white font-bold py-4 px-10 rounded uppercase hover:bg-hero-red-light transition-all shadow-lg shadow-hero-red/20">
+              <button onClick={(e) => { e.preventDefault(); alert("Coming Soon!"); }} className="bg-hero-red text-white font-bold py-4 px-10 rounded uppercase hover:bg-hero-red-light transition-all shadow-lg shadow-hero-red/20">
                 Customize Color
               </button>
-              <button className="border border-white/20 text-white font-bold py-4 px-10 rounded uppercase hover:bg-white/5 transition-all">
+              <button onClick={(e) => { e.preventDefault(); alert("Coming Soon!"); }} className="border border-white/20 text-white font-bold py-4 px-10 rounded uppercase hover:bg-white/5 transition-all">
                 View Tech Specs
               </button>
             </div>

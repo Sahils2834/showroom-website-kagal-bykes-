@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar"
 import Footer from "./components/Footer"
 import ScrollToTop from "./components/ScrollToTop"
 import BottomNav from "./components/BottomNav"
+import ChatWidget from "./components/ChatWidget"
 
 import Home from "./pages/Home"
 import Bikes from "./pages/Bikes"
@@ -50,6 +51,7 @@ return(
 <Navbar/>
 <Sidebar/>
 <BottomNav/>
+<ChatWidget />
 
 <Routes>
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { serviceCategories } from "../data/bikesData";
 import AppointmentForm from "../components/AppointmentForm";
 import { FaUserCheck, FaCogs, FaBolt, FaClipboardList } from "react-icons/fa";
@@ -81,7 +82,7 @@ export default function Services(){
                     </div>
                   </div>
 
-                  <button className="w-full bg-hero-red text-white px-12 py-5 rounded-2xl font-display font-black uppercase tracking-widest hover:bg-hero-red-light transition-all shadow-xl shadow-hero-red/20 transform hover:-translate-y-1">
+                  <button onClick={(e) => { e.preventDefault(); alert("Coming Soon! Online booking integration is arriving shortly."); }} className="w-full bg-hero-red text-white px-12 py-5 rounded-2xl font-display font-black uppercase tracking-widest hover:bg-hero-red-light transition-all shadow-xl shadow-hero-red/20 transform hover:-translate-y-1">
                     Initialize Booking
                   </button>
                 </div>

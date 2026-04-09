@@ -32,9 +32,40 @@ export default function OffersSection() {
           <h2 className="text-3xl md:text-6xl font-display font-black uppercase tracking-tighter italic mb-3 md:mb-4">
             {offer.title.split(' ')[0]} <span className="text-hero-red">{offer.title.split(' ').slice(1).join(' ')}</span>
           </h2>
-          <p className="text-sm md:text-lg font-light text-gray-400 max-w-lg leading-relaxed px-4 md:px-0">
-            {offer.subtitle.replace(`₹${offer.discount}`, `₹${offer.discount.toLocaleString()}`)}
-          </p>
+          <div className="text-sm md:text-base font-light text-gray-400 max-w-lg px-4 md:px-0 text-left">
+            {offer.subtitle.replace(`₹${offer.discount}`, `₹${offer.discount.toLocaleString()}`).split('\n').map((line, index) => {
+              const trimmed = line.trim();
+              if (!trimmed) return <div key={index} className="h-2"></div>;
+              
+              if (trimmed.startsWith('👉')) {
+                return (
+                  <div key={index} className="flex gap-2 items-start ml-2 md:ml-4 my-1">
+                    <span className="text-hero-red opacity-80 mt-0.5 text-xs">■</span>
+                    <span className="text-gray-300 font-medium">{trimmed.replace('👉', '').trim()}</span>
+                  </div>
+                );
+              }
+              
+              const hasEmojiPrefix = /^[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/.test(trimmed);
+              
+              if (hasEmojiPrefix) {
+                const emoji = trimmed.match(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])+/)[0];
+                const rest = trimmed.replace(emoji, '').trim();
+                return (
+                  <div key={index} className="flex gap-2 items-center mt-4 mb-2 text-white font-bold text-base md:text-lg">
+                    <span>{emoji}</span>
+                    <span className="text-white">{rest}</span>
+                  </div>
+                );
+              }
+              
+              return (
+                <div key={index} className="text-hero-red font-bold mt-4 mb-1 uppercase tracking-wider text-xs md:text-sm">
+                  {trimmed}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         <div className="flex flex-col items-center">

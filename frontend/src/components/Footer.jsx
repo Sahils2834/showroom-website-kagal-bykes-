@@ -23,16 +23,16 @@ export default function Footer() {
                 Your trusted authorized Hero MotoCorp showroom. We deliver passion and performance through premium mobility solutions.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-hero-gray flex items-center justify-center text-gray-400 hover:bg-hero-red hover:text-white transition-all duration-300">
+                <a href="#" onClick={(e) => { e.preventDefault(); alert("Coming Soon!"); }} className="w-10 h-10 rounded-full bg-hero-gray flex items-center justify-center text-gray-400 hover:bg-hero-red hover:text-white transition-all duration-300">
                   <FaFacebook />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-hero-gray flex items-center justify-center text-gray-400 hover:bg-hero-red hover:text-white transition-all duration-300">
+                <a href="#" onClick={(e) => { e.preventDefault(); alert("Coming Soon!"); }} className="w-10 h-10 rounded-full bg-hero-gray flex items-center justify-center text-gray-400 hover:bg-hero-red hover:text-white transition-all duration-300">
                   <FaTwitter />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-hero-gray flex items-center justify-center text-gray-400 hover:bg-hero-red hover:text-white transition-all duration-300">
+                <a href="#" onClick={(e) => { e.preventDefault(); alert("Coming Soon!"); }} className="w-10 h-10 rounded-full bg-hero-gray flex items-center justify-center text-gray-400 hover:bg-hero-red hover:text-white transition-all duration-300">
                   <FaInstagram />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-hero-gray flex items-center justify-center text-gray-400 hover:bg-hero-red hover:text-white transition-all duration-300">
+                <a href="#" onClick={(e) => { e.preventDefault(); alert("Coming Soon!"); }} className="w-10 h-10 rounded-full bg-hero-gray flex items-center justify-center text-gray-400 hover:bg-hero-red hover:text-white transition-all duration-300">
                   <FaYoutube />
                 </a>
               </div>
@@ -86,9 +86,9 @@ export default function Footer() {
             <div>
               <h3 className="text-lg font-display font-bold uppercase tracking-widest mb-6">Stay Updated</h3>
               <p className="text-gray-400 font-light text-sm mb-4">Subscribe to receive updates on new launches and exclusive offers.</p>
-              <form className="flex">
+              <form className="flex" onSubmit={(e) => { e.preventDefault(); alert("Coming Soon!"); }}>
                 <input type="email" placeholder="Email Address" className="bg-hero-gray w-full px-4 py-3 rounded-l focus:outline-none focus:bg-white/10 text-white border border-white/5 border-r-0" />
-                <button className="bg-hero-red text-white px-4 py-3 rounded-r font-bold hover:bg-hero-red-light transition-colors uppercase text-sm tracking-widest">
+                <button type="submit" className="bg-hero-red text-white px-4 py-3 rounded-r font-bold hover:bg-hero-red-light transition-colors uppercase text-sm tracking-widest">
                   Join
                 </button>
               </form>
@@ -101,8 +101,8 @@ export default function Footer() {
 
             <div className="flex gap-6 mt-4 md:mt-0">
               <Link to="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link>
-              <a href="#" className="hover:text-white transition">Terms &amp; Conditions</a>
-              <a href="#" className="hover:text-white transition">Disclaimer</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); alert("Coming Soon!"); }} className="hover:text-white transition">Terms &amp; Conditions</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); alert("Coming Soon!"); }} className="hover:text-white transition">Disclaimer</a>
             </div>
           </div>
         </div>
